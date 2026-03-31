@@ -366,6 +366,9 @@ export default function Orchestrator() {
     /* ============================================================
        Anchor scroll
        ============================================================ */
+    const wipeEl =
+      document.querySelector<HTMLElement>(".page-transition-wipe");
+
     function handleAnchorClick(e: Event) {
       e.preventDefault();
       const link = e.currentTarget as HTMLAnchorElement;
@@ -373,35 +376,55 @@ export default function Orchestrator() {
       if (!href || !href.startsWith("#")) return;
       const target = document.querySelector(href);
       if (!target) return;
-      if (lenis) {
-        lenis.scrollTo(target as HTMLElement, { duration: 1.2 });
-      } else {
-        target.scrollIntoView({ behavior: "smooth" });
+
+      if (!wipeEl) {
+        // Fallback: no wipe element, just scroll
+        if (lenis) {
+          lenis.scrollTo(target as HTMLElement, { duration: 1.2 });
+        } else {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+        return;
       }
+
+      const wipeTL = gsap.timeline();
+
+      // Wipe in — cover the screen
+      wipeTL.to(wipeEl, {
+        y: 0,
+        duration: 0.8,
+        ease: "power3.inOut",
+      });
+
+      // At peak coverage, jump to target
+      wipeTL.call(() => {
+        if (lenis) {
+          lenis.scrollTo(target as HTMLElement, { immediate: true });
+        } else {
+          target.scrollIntoView();
+        }
+      });
+
+      // Wipe out — reveal destination
+      wipeTL.to(wipeEl, {
+        y: "-100%",
+        duration: 0.8,
+        ease: "power3.inOut",
+        delay: 0.1,
+      });
+
+      // Reset for next use
+      wipeTL.set(wipeEl, { y: "100%" });
     }
 
     const anchorLinks = document.querySelectorAll<HTMLAnchorElement>(
-      '.nav__links a[href^="#"], .footer__links a[href^="#"], .menu-overlay__link[href^="#"]'
+      '.menu-overlay__link[href^="#"]'
     );
     anchorLinks.forEach((link) =>
       link.addEventListener("click", handleAnchorClick)
     );
 
-    /* ============================================================
-       Animated link hover — text-swap
-       ============================================================ */
-    document.querySelectorAll(".animated-link").forEach((link) => {
-      const span = link.querySelector("span");
-      if (!span) return;
-      link.addEventListener("mouseenter", () => {
-        gsap.to(span, { yPercent: -100, duration: 0.5, ease: "circ.inOut" });
-      });
-      link.addEventListener("mouseleave", () => {
-        gsap.to(span, { yPercent: 0, duration: 0.5, ease: "circ.inOut" });
-      });
-    });
-
-    /* ============================================================
+/* ============================================================
        Preloader
        ============================================================ */
     const welcomeTL = gsap.timeline({ paused: true });
@@ -453,7 +476,7 @@ export default function Orchestrator() {
       0
     );
     welcomeTL.from(
-      ".nav",
+      ".navigation",
       { yPercent: -100, duration: 0.4, ease: "expo.out" },
       0
     );
@@ -461,11 +484,6 @@ export default function Orchestrator() {
       ".hero__bottom .text-mask__inner",
       { yPercent: 0, duration: 0.8, ease: "expo.out" },
       0.4
-    );
-    welcomeTL.from(
-      ".hero__bg",
-      { opacity: 0, scale: 1.1, duration: 1.8, ease: "power3.out" },
-      0
     );
 
     /* ============================================================
@@ -496,7 +514,7 @@ export default function Orchestrator() {
       0.3
     );
 
-    const menuBtn = document.querySelector(".nav__menu-btn");
+    const menuBtn = document.querySelector(".navigation__menu-btn");
     function toggleMenu() {
       if (menuTL.reversed()) {
         menuTL.play();
@@ -623,7 +641,7 @@ export default function Orchestrator() {
     /* ============================================================
        Card entrance — fade up on scroll
        ============================================================ */
-    document.querySelectorAll(".presentation__card").forEach((slide) => {
+    document.querySelectorAll(".tilt-cards-section__card").forEach((slide) => {
       gsap.from(slide.querySelector(".tilt-card-container"), {
         scrollTrigger: {
           trigger: slide,
