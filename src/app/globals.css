@@ -37,8 +37,8 @@
   --bg-dark: var(--black);
   --bg-invert: var(--black);
   --fg-invert: var(--white);
-  --image-bg: var(--neutral-100);
-  --image-bg-dark: var(--neutral-950);
+
+
   --accent: var(--amber);
   --accent-hover: var(--amber);
   /* Hero (h1) */
@@ -56,25 +56,25 @@
   --section-heading-tablet: 1.563rem;
   --section-heading-desktop: 1.953rem;
   --section-body-mobile: 1rem;
-  --section-body-tablet: 1rem;
-  --section-body-desktop: 1.25rem;
+  --section-body-tablet: 1.25rem;
+  --section-body-desktop: 1.563rem;
   /* Component (h3) */
   --component-heading-mobile: 1rem;
   --component-heading-tablet: 1.25rem;
   --component-heading-desktop: 1.563rem;
   --component-body-mobile: 1rem;
-  --component-body-tablet: 1rem;
-  --component-body-desktop: 1rem;
+  --component-body-tablet: 1.25rem;
+  --component-body-desktop: 1.25rem;
   /* Sub-component (h4) */
   --subcomponent-heading-mobile: 1rem;
-  --subcomponent-heading-tablet: 1rem;
+  --subcomponent-heading-tablet: 1.25rem;
   --subcomponent-heading-desktop: 1.25rem;
   /* Footer (body only) */
   --footer-body-mobile: 1rem;
-  --footer-body-tablet: 1rem;
+  --footer-body-tablet: 1.25rem;
   --footer-body-desktop: 1.25rem;
   --nav-height: calc(1.5rem * 2 + 28px + 1px);
-  --nav-height-mobile: calc(0.75rem * 2 + 24px + 1px);
+  --nav-height-mobile: 48px;
   --radius-s: 0.5rem;
   --radius-m: 0.75rem;
   --radius-l: 1rem;
@@ -111,22 +111,6 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inherit; }
 
 /* --- Utilities --- */
-.image-placeholder {
-  background-color: var(--image-bg);
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-}
-.image-placeholder::after {
-  content: attr(data-label);
-  color: var(--neutral-400);
-  font-size: 1rem;
-  text-align: center;
-  padding: 1rem;
-}
-
-.text-mask { display: block; clip-path: inset(0 0 0 0); }
-.text-mask__inner { display: block; transform: translateY(105%); }
-
 .section-label {
   display: inline-block;
   font-family: var(--font-noto-sans-jp), 'Noto Sans JP', sans-serif;
@@ -171,7 +155,9 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   transform: translateY(100%);
 }
 
-/* --- Navigation --- */
+/* ============================================================
+   1. NAVIGATION
+   ============================================================ */
 .navigation {
   position: fixed;
   top: 0; left: 0;
@@ -257,7 +243,8 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   text-decoration: none;
   line-height: 1.15;
   display: block;
-  padding: 0 0 0.125rem;
+  padding: 0 0 0.5rem;
+  border-bottom: 1px solid var(--neutral-200);
   overflow: hidden;
   transition: color 300ms ease;
 }
@@ -267,7 +254,9 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   display: inline-block; position: relative; line-height: 1;
 }
 
-/* --- Hero --- */
+/* ============================================================
+   2. HERO
+   ============================================================ */
 .hero {
   position: relative;
   display: flex;
@@ -282,7 +271,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   max-width: 52rem;
   padding: 1.5rem;
   display: flex; flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.953rem;
   text-align: left;
 }
 .hero__heading {
@@ -306,11 +295,11 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
 }
 
 /* ============================================================
-   TILT CARDS SECTION — Vertical card scroll
+   3. TILT CARDS
    ============================================================ */
 .tilt-cards-section {
   position: relative;
-  background-color: var(--bg-dark);
+  background-color: var(--bg);
 }
 .tilt-cards-section__card {
   min-height: 100vh;
@@ -320,9 +309,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   padding: 4rem 2rem;
 }
 
-/* ============================================================
-   TILT CARD — Container + Card base
-   ============================================================ */
+/* --- Card container + base --- */
 .tilt-card-container {
   position: relative;
   width: 85%;
@@ -340,12 +327,10 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   overflow: hidden;
   clip-path: inset(0 0 0 0 round var(--radius-xl));
 }
-.tilt-card--light { background-color: var(--bg); color: var(--fg); }
-.tilt-card--dark { background-color: var(--bg-dark); color: var(--fg-invert); }
+.tilt-card--light,
+.tilt-card--dark { background-color: var(--neutral-50); color: var(--fg); border: 1px solid var(--neutral-200); }
 
-/* ============================================================
-   IMAGE LAYERS — 5 stacked layers per cycling stack
-   ============================================================ */
+/* --- Image layers (cycling) --- */
 .tilt-card__layers {
   position: absolute;
   inset: 0;
@@ -377,7 +362,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   background: linear-gradient(145deg, #2d3436 0%, #636e72 50%, #2d3436 100%);
 }
 
-/* --- Gradient overlay (Type A) --- */
+/* --- Gradient overlay --- */
 .tilt-card__gradient {
   position: absolute;
   inset: 0;
@@ -391,9 +376,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   );
 }
 
-/* ============================================================
-   TILT CARD — Inner content
-   ============================================================ */
+/* --- Inner content --- */
 .tilt-card__inner {
   position: relative;
   z-index: 1;
@@ -416,80 +399,16 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   justify-content: flex-start;
 }
 
-/* --- Section heading (h2) --- */
+/* --- Card heading (h2) --- */
 .tilt-card__title {
   font-family: var(--font-rem), sans-serif;
   font-size: var(--section-heading-desktop); font-weight: 600;
   line-height: 1.2; letter-spacing: -0.03em;
   margin-bottom: 0.5rem;
 }
-.tilt-card--dark .tilt-card__title { color: var(--neutral-50); }
-.tilt-card--light .tilt-card__title { color: var(--neutral-950); }
+.tilt-card__title { color: var(--neutral-950); }
 
-/* ============================================================
-   TYPE B — Split layout (text + cycling image)
-   ============================================================ */
-.tilt-card__split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  align-items: center;
-  min-height: 60vh;
-}
-.tilt-card__split-text p {
-  font-family: var(--font-noto-sans-jp), 'Noto Sans JP', sans-serif;
-  font-size: var(--section-body-desktop);
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
-}
-.tilt-card--dark .tilt-card__split-text p { color: var(--neutral-300); }
-.tilt-card--light .tilt-card__split-text p { color: var(--neutral-600); }
-.tilt-card__split-text p:last-child { margin-bottom: 0; }
-.tilt-card__split-image {
-  position: relative;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  height: 100%;
-  min-height: 50vh;
-  max-height: 70vh;
-}
-
-/* ============================================================
-   TYPE A / C — Grid layout (3 columns)
-   ============================================================ */
-.tilt-card__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  margin-top: 1.5rem;
-}
-.tilt-card__grid-item h3 {
-  font-family: var(--font-rem), sans-serif;
-  font-size: var(--component-heading-desktop); font-weight: 600;
-  line-height: 1.2; letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-}
-.tilt-card__grid-item p {
-  font-family: var(--font-noto-sans-jp), 'Noto Sans JP', sans-serif;
-  font-size: var(--component-body-desktop);
-  line-height: 1.6;
-}
-.tilt-card--dark .tilt-card__grid-item h3 { color: var(--neutral-50); }
-.tilt-card--dark .tilt-card__grid-item p { color: var(--neutral-300); }
-.tilt-card--light .tilt-card__grid-item h3 { color: var(--neutral-950); }
-.tilt-card--light .tilt-card__grid-item p { color: var(--neutral-600); }
-
-.tilt-card__grid-image {
-  position: relative;
-  border-radius: var(--radius-l);
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  margin-bottom: 1.25rem;
-}
-
-/* ============================================================
-   TYPE C — Product Grid (5 items, 3 columns)
-   ============================================================ */
+/* --- Product Grid --- */
 .tilt-card__product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -502,8 +421,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   font-size: var(--component-heading-desktop); font-weight: 600;
   margin-top: 0.75rem;
 }
-.tilt-card--dark .tilt-card__product-item h3 { color: var(--neutral-50); }
-.tilt-card--light .tilt-card__product-item h3 { color: var(--neutral-950); }
+.tilt-card__product-item h3 { color: var(--neutral-950); }
 .tilt-card__product-image {
   position: relative;
   border-radius: var(--radius-l);
@@ -511,9 +429,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   aspect-ratio: 16 / 9;
 }
 
-/* ============================================================
-   TYPE A — IRR Data Rows
-   ============================================================ */
+/* --- Data rows --- */
 .tilt-card__group { margin-bottom: 2rem; }
 .tilt-card__group:last-child { margin-bottom: 0; }
 .tilt-card__group-label {
@@ -523,8 +439,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   text-transform: none;
   letter-spacing: 0.06em;
 }
-.tilt-card--dark .tilt-card__group-label { color: var(--neutral-300); }
-.tilt-card--light .tilt-card__group-label { color: var(--neutral-500); }
+.tilt-card__group-label { color: var(--neutral-500); }
 
 .tilt-card__row {
   display: flex;
@@ -537,13 +452,11 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   font-size: var(--section-body-desktop);
   white-space: nowrap;
 }
-.tilt-card--dark .tilt-card__row-label { color: var(--neutral-300); }
-.tilt-card--light .tilt-card__row-label { color: var(--neutral-600); }
+.tilt-card__row-label { color: var(--neutral-600); }
 .tilt-card__row-line {
   flex: 1; height: 1px;
 }
-.tilt-card--dark .tilt-card__row-line { background-color: rgba(255, 255, 255, 0.12); }
-.tilt-card--light .tilt-card__row-line { background-color: var(--neutral-200); }
+.tilt-card__row-line { background-color: var(--neutral-200); }
 .tilt-card__row-value {
   font-family: var(--font-noto-sans-jp), 'Noto Sans JP', sans-serif;
   font-size: var(--section-body-desktop); font-weight: 700;
@@ -554,30 +467,22 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   font-size: var(--component-heading-desktop); font-weight: 800;
 }
 
-/* Highlight box (Type A dark overlay variant) */
+/* --- Highlight box --- */
 .tilt-card__group--highlight {
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   margin-top: 1.5rem;
-}
-.tilt-card--dark .tilt-card__group--highlight {
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.tilt-card--light .tilt-card__group--highlight {
   background-color: var(--neutral-50);
   border: 1px solid var(--neutral-100);
 }
 
-/* ============================================================
-   TYPE C — Risk Items (with cycling image per item)
-   ============================================================ */
+/* --- Risk items --- */
 .tilt-card__risk-item {
   padding: 1.25rem 0;
-  border-bottom: 1px solid var(--neutral-800);
+  border-bottom: 1px solid var(--neutral-200);
 }
 .tilt-card__risk-item:first-of-type {
-  border-top: 1px solid var(--neutral-800);
+  border-top: 1px solid var(--neutral-200);
 }
 .tilt-card__risk-image {
   position: relative;
@@ -613,7 +518,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
 }
 
 /* ============================================================
-   FOOTER
+   4. FOOTER
    ============================================================ */
 .footer {
   position: relative;
@@ -664,40 +569,36 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
 }
 
 /* ============================================================
-   Breakpoint: Tablet (745–1024px)
+   TABLET (745–1024px)
    ============================================================ */
 @media (max-width: 1024px) {
   /* Hero */
+  .hero__content { max-width: 44rem; gap: 1.563rem; }
   .hero__heading { font-size: var(--hero-heading-tablet); }
   .hero__subheading { font-size: var(--hero-subheading-tablet); }
   .hero__body { font-size: var(--hero-body-tablet); }
 
   /* Tilt cards — section + container */
   .tilt-cards-section__card { min-height: 50vh; padding: 3rem 1.5rem; }
-  .tilt-card-container { min-height: 50vh; }
-  .tilt-card { min-height: 50vh; }
+  .tilt-card-container { min-height: 50vh; max-width: 48rem; border-radius: var(--radius-l); }
+  .tilt-card { min-height: 50vh; border-radius: var(--radius-l); clip-path: inset(0 0 0 0 round var(--radius-l)); }
   .tilt-card__inner { min-height: 50vh; padding: 2.5rem; }
   .tilt-card__inner--top { padding-top: 3rem; }
   .tilt-card__title { font-size: var(--section-heading-tablet); }
   .section-label { font-size: var(--section-body-tablet); }
 
-  /* Type B — Split */
-  .tilt-card__split { grid-template-columns: 1fr; }
-  .tilt-card__split-text p { font-size: var(--section-body-tablet); }
-  .tilt-card__split-image { max-height: 35vh; min-height: 30vh; }
-
-  /* Type C — Grids */
-  .tilt-card__grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .tilt-card__grid-item h3 { font-size: var(--component-heading-tablet); }
-  .tilt-card__grid-item p { font-size: var(--component-body-tablet); }
-  .tilt-card__product-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Product grid */
+  .tilt-card__product-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
   .tilt-card__product-item h3 { font-size: var(--component-heading-tablet); }
 
-  /* Type A — Data rows */
+  /* Data rows */
   .tilt-card__group-label { font-size: var(--component-heading-tablet); }
   .tilt-card__row-label { font-size: var(--section-body-tablet); }
   .tilt-card__row-value { font-size: var(--section-body-tablet); }
   .tilt-card__row-value--accent { font-size: var(--component-heading-tablet); }
+
+  /* Highlight box */
+  .tilt-card__group--highlight { border-radius: var(--radius-l); padding: 1.25rem; }
 
   /* Risk items */
   .tilt-card__risk-label { font-size: var(--component-heading-tablet); }
@@ -706,6 +607,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   .tilt-card__hedge-label { font-size: var(--subcomponent-heading-tablet); }
 
   /* Footer */
+  .footer { padding: 1.25rem; }
   .footer__email-text { font-size: var(--footer-body-tablet); }
   .footer__email-label { font-size: var(--footer-body-tablet); }
   .footer__copy { font-size: var(--footer-body-tablet); }
@@ -716,7 +618,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
 }
 
 /* ============================================================
-   Breakpoint: Mobile (≤ 744px)
+   MOBILE (≤ 744px)
    ============================================================ */
 @media (max-width: 744px) {
   /* Navigation */
@@ -724,7 +626,7 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   .navigation__icon img { height: 24px; }
 
   /* Hero */
-  .hero__content { padding: 0.75rem; }
+  .hero__content { max-width: 100%; padding: 0.75rem; gap: 1.25rem; }
   .hero__heading { font-size: var(--hero-heading-mobile); }
   .hero__subheading { font-size: var(--hero-subheading-mobile); }
   .hero__body { font-size: var(--hero-body-mobile); }
@@ -735,31 +637,26 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
 
   /* Tilt cards — section + container */
   .tilt-cards-section__card { padding: 1.5rem 0.75rem; min-height: auto; }
-  .tilt-card-container { width: 100%; min-height: auto; }
-  .tilt-card { min-height: auto; }
+  .tilt-card-container { width: 100%; min-height: auto; max-width: 100%; border-radius: var(--radius-m); }
+  .tilt-card { min-height: auto; border-radius: var(--radius-m); clip-path: inset(0 0 0 0 round var(--radius-m)); }
   .tilt-card__inner { padding: 1.5rem; min-height: auto; }
   .tilt-card__inner--top { padding-top: 2rem; }
   .tilt-card__title { font-size: var(--section-heading-mobile); }
   .section-label { font-size: var(--section-body-mobile); }
 
-  /* Type B — Split */
-  .tilt-card__split { grid-template-columns: 1fr; }
-  .tilt-card__split-text p { font-size: var(--section-body-mobile); }
-  .tilt-card__split-image { max-height: 30vh; min-height: 25vh; }
-
-  /* Type C — Grids */
-  .tilt-card__grid { grid-template-columns: 1fr; gap: 1.25rem; }
-  .tilt-card__grid-item h3 { font-size: var(--component-heading-mobile); }
-  .tilt-card__grid-item p { font-size: var(--component-body-mobile); }
+  /* Product grid */
   .tilt-card__product-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .tilt-card__product-item h3 { font-size: var(--component-heading-mobile); }
 
-  /* Type A — Data rows */
+  /* Data rows */
   .tilt-card__group-label { font-size: var(--component-heading-mobile); }
   .tilt-card__row-label { white-space: normal; flex: 1 1 60%; font-size: var(--section-body-mobile); }
   .tilt-card__row-line { display: none; }
   .tilt-card__row-value { flex: 0 0 auto; font-size: var(--section-body-mobile); }
   .tilt-card__row-value--accent { font-size: var(--component-heading-mobile); }
+
+  /* Highlight box */
+  .tilt-card__group--highlight { border-radius: var(--radius-m); padding: 1rem; }
 
   /* Risk items */
   .tilt-card__risk-label { font-size: var(--component-heading-mobile); }
