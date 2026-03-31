@@ -27,7 +27,7 @@ A web-based pitch experience where each section — persona, product, financials
 
 I chose Next.js 16 with the App Router for server-side rendering and optimized delivery. The entire interaction layer is built with GSAP and ScrollTrigger — 3D card transforms, entrance animations, menu transitions, and page wipes. Lenis provides buttery smooth scroll on desktop while being disabled on mobile for native touch behavior.
 
-The tilt card system supports three variants (Type A for data tables, Type B for narrative text, Type C for grids and risk items) with a shared 3D transform pipeline. On mobile, a three-strategy priority system handles interaction: gyroscope first (iOS DeviceOrientation), touch-drag tilt as fallback, and ambient idle float when not touching.
+The tilt card system supports three variants (Type A for data tables, Type B for text-only narrative, Type C for grids and risk items) with a shared 3D transform pipeline. On mobile, a three-strategy priority system handles interaction: gyroscope first (iOS DeviceOrientation), touch-drag tilt as fallback, and ambient idle float when not touching.
 
 Typography uses two typefaces loaded via next/font: REM Semibold for headings and Noto Sans JP for body text, with a major-third (1.25) type scale from 0.8rem to 5.96rem. CSS custom property tokens define sizes for each heading level (h1–h4) at three iOS HIG-aligned breakpoints (mobile ≤744px, tablet 745–1024px, desktop ≥1025px).
 

@@ -5,7 +5,7 @@ Major features described for portfolio presentation.
 
 ## 3D Tilt Card System
 
-Three card variants (Type A, B, C) rendered as full-viewport interactive elements. Each card responds to mouse movement on desktop with up to 40 degrees of tilt and 1.05x scale on hover. Cards use `transformPerspective: 800` for depth. On mobile, a three-priority interaction system activates: gyroscope tilt via DeviceOrientation (with iOS permission request), touch-drag tilt as fallback, and ambient idle float animation when not touching.
+Three card variants (Type A, B, C) rendered as full-viewport interactive elements. Each card responds to mouse movement on desktop with up to 10 degrees of subtle tilt and 1.02x scale on hover. Cards use `transformPerspective: 800` for depth. On mobile, a three-priority interaction system activates: gyroscope tilt via DeviceOrientation (with iOS permission request), touch-drag tilt as fallback, and ambient idle float animation when not touching.
 
 ## Mobile Gyroscope Interaction
 
