@@ -33,9 +33,7 @@ export default function Home() {
       <div className="page-transition-wipe" />
       <div className="noise-overlay" />
 
-      <h1 className="seo-heading">
-        GKTK — Semiconductor Housing for Kumamoto
-      </h1>
+      <h1 className="seo-heading">GKTK</h1>
 
       {/* Navigation */}
       <header className="navigation">
@@ -61,47 +59,17 @@ export default function Home() {
       <main>
         {/* ========== HERO ========== */}
         <section className="hero" id="hero">
-          <div className="hero-mask">
-            <div className="hero-mask__part" />
-            <div className="hero-mask__part" />
-          </div>
-          <div className="hero__heading-wrapper">
-            <h2 className="hero__title">
-              <span className="text-mask">
-                <span className="text-mask__inner">Semiconductor</span>
-              </span>
-              <span className="text-mask">
-                <span className="text-mask__inner">housing for</span>
-              </span>
-              <span className="text-mask">
-                <span className="text-mask__inner">Kumamoto&rsquo;s</span>
-              </span>
-              <span className="text-mask">
-                <span className="text-mask__inner">
-                  <span className="hero__accent">next decade</span>
-                </span>
-              </span>
-            </h2>
-          </div>
-          <div className="hero__bottom">
-            <p className="hero__sub">
-              <span className="text-mask">
-                <span className="text-mask__inner">
-                  An integrated accommodation and support platform for the
-                  semiconductor supply chain, purpose-built for Singapore-based
-                  family offices.
-                </span>
-              </span>
+          <div className="hero__content">
+            <p className="hero__text">
+              An integrated accommodation and support platform for the
+              semiconductor supply chain, purpose-built for Singapore-based
+              family offices.
             </p>
-            <p className="hero__sub">
-              <span className="text-mask">
-                <span className="text-mask__inner">
-                  Furnished, move-in-ready housing with localized
-                  Taiwanese-speaking support staff and professional property
-                  management — a turnkey living solution so tenants can focus
-                  entirely on work.
-                </span>
-              </span>
+            <p className="hero__text">
+              Furnished, move-in-ready housing with localized
+              Taiwanese-speaking support staff and professional property
+              management — a turnkey living solution so tenants can focus
+              entirely on work.
             </p>
           </div>
         </section>
