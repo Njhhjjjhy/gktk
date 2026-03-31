@@ -56,12 +56,7 @@ export function TiltCardB({
   return (
     <div className={`tilt-card tilt-card--${variant}`} id={id}>
       <div className="tilt-card__inner">
-        <div className="tilt-card__split">
-          <div className="tilt-card__split-text">{children}</div>
-          <div className="tilt-card__split-image">
-            <CyclingLayers />
-          </div>
-        </div>
+        {children}
       </div>
     </div>
   );

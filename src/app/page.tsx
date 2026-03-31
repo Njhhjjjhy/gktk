@@ -64,16 +64,17 @@ export default function Home() {
                 <span className="section-label">Target tenant</span>
                 <h2 className="tilt-card__title">Who we build for</h2>
                 <p>
-                  Expatriate semiconductor professionals on short- to long-term
-                  assignments, often relocating on short notice and requiring
-                  immediate, hassle-free housing.
+                  Tenants are employees from semiconductor companies on short-
+                  to long-term assignments. They need to settle in quickly and
+                  need &ldquo;move-in-ready&rdquo; accommodations to adapt to a
+                  new environment.
                 </p>
                 <p>
-                  They prioritize fully move-in-ready accommodations that
-                  minimize setup and adjustment time. Beyond housing, they value
-                  a complete living solution with reliable management and
-                  localized support to reduce language and cultural friction,
-                  allowing them to focus entirely on work.
+                  This includes fully furnished units, reliable property
+                  management, and local support to minimize inconveniences
+                  caused by language and cultural differences. An ideal home
+                  allows them to focus on work without being distracted by
+                  day-to-day matters.
                 </p>
               </TiltCardB>
             </div>

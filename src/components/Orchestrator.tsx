@@ -19,10 +19,10 @@ function initMobileTilt(containerEls: HTMLElement[]) {
     "ontouchstart" in window || navigator.maxTouchPoints > 0;
   if (!isTouchDevice) return null;
 
-  const MAX_TILT = 25;
+  const MAX_TILT = 8;
   const TILT_DURATION = 0.5;
   const TILT_EASE = "power2.out";
-  const SCALE_ACTIVE = 1.08;
+  const SCALE_ACTIVE = 1.02;
   const RESET_DURATION = 0.6;
 
   let gyroPermission: "granted" | "denied" | "unknown" | "unavailable" =
@@ -488,9 +488,9 @@ export default function Orchestrator() {
 
     /* ============================================================
        3D Tilt Interaction — DESKTOP
-       perspective(800px), max ±40°, scale 1.05 on hover
+       perspective(800px), max ±10°, scale 1.02 on hover
        ============================================================ */
-    const MAX_TILT = 40;
+    const MAX_TILT = 10;
     const containers = Array.from(
       document.querySelectorAll<HTMLElement>(".tilt-card-container")
     );
@@ -520,7 +520,7 @@ export default function Orchestrator() {
           rotationY,
           duration: 0.4,
         });
-        gsap.to(card, { scale: 1.05, duration: 0.4 });
+        gsap.to(card, { scale: 1.02, duration: 0.4 });
       });
 
       container.addEventListener("mouseleave", () => {
