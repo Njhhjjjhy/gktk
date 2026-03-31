@@ -37,7 +37,7 @@ Lenis smooth scroll is active on viewports above 744px, with `touchMultiplier: 0
 
 ## Responsive Design
 
-Three iOS HIG-aligned breakpoints — mobile (≤744px), tablet (745–1024px), and desktop (≥1025px) — with tuned typography, spacing, padding, and card layouts at each. All values scale per breakpoint: hero gap and max-width, card container max-width and border-radius, section padding, highlight box radius, split layout gaps, and footer padding. The type scale uses a 1.25 ratio (major third) with CSS custom property tokens per heading level per breakpoint rather than fluid scaling, with all adjacent breakpoints having distinct values. A four-level heading hierarchy (h1→h2→h3→h4) uses REM Semibold for headings and Noto Sans JP for body text.
+Three iOS HIG-aligned breakpoints — mobile (≤744px), tablet (745–1024px), and desktop (≥1025px) — with tuned typography, spacing, padding, and card layouts at each. All values scale per breakpoint: hero gap and max-width, card container max-width and border-radius, section gaps (32/36/42px), highlight box radius, split layout gaps, and footer height (48/56/64px). The type scale uses a 1.25 ratio (major third) with CSS custom property tokens per heading level per breakpoint rather than fluid scaling, with all adjacent breakpoints having distinct values. A four-level heading hierarchy (h1→h2→h3→h4) uses REM Semibold for headings and Noto Sans JP for body text.
 
 ## Runtime Noise Texture
 
@@ -45,7 +45,7 @@ A 300x300 canvas generates a grayscale noise pattern at load time, applied as a 
 
 ## GKTK Brand Logo
 
-Custom SVG logo with amber-to-orange linear gradient (#FBB931 to #FF8660), referenced via an `<img>` element pointing to `/logobase.svg`. Used in the fixed navigation header and footer.
+Custom SVG logo with amber-to-orange linear gradient (#FBB931 to #FF8660), referenced via an `<img>` element pointing to `/logobase.svg`. Used in the fixed navigation header.
 
 ## QA Breakpoint Tool
 

@@ -68,11 +68,15 @@ All three share the same 3D transform pipeline (perspective, rotation, scale) an
 ## Spacing
 
 Consistent padding system across breakpoints:
-- Desktop: 1.5rem page padding, 3.5rem card padding, 4rem section padding
-- Tablet: 1.25rem page padding, 2.5rem card padding, 3rem section padding
-- Mobile: 0.75rem page padding, 1.5rem card padding, 1.5rem section padding
+- Desktop: 1.5rem page padding, 3.5rem card padding, 42px section gaps
+- Tablet: 1.25rem page padding, 2.5rem card padding, 36px section gaps
+- Mobile: 0.75rem page padding, 1.5rem card padding, 32px section gaps
 
-Cards use `min-height: 70vh` on desktop, `50vh` on tablet, and auto on mobile for natural content height. Card container scales from 85% width (max 56rem) on desktop to 85% (max 48rem) on tablet to 100% on mobile. Border-radius scales from radius-xl (1.5rem) to radius-l (1rem) to radius-m (0.75rem).
+Section gaps are uniform between all major sections (hero→tilt cards, tilt cards→footer) and between the nav and hero content. First and last tilt cards have zero edge padding to ensure the margin-based gaps are visually accurate.
+
+The hero section sizes to its content (no min-height) with top padding equal to nav height + gap. Cards use `min-height: 100vh` on desktop, `50vh` on tablet, and auto on mobile for natural content height. Card container scales from 85% width (max 56rem) on desktop to 85% (max 48rem) on tablet to 100% on mobile. Border-radius scales from radius-xl (1.5rem) to radius-l (1rem) to radius-m (0.75rem).
+
+The footer is a compact bar (48/56/64px min-height across breakpoints) with the light page background (`--bg`), containing an address line and copyright.
 
 ## Navigation
 
