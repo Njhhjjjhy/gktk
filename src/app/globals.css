@@ -141,7 +141,8 @@ a { color: inherit; text-decoration: none; font-size: 1.25rem; font-weight: 400;
   z-index: 9999;
   padding: 1.5rem;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 100%);
+  background-color: var(--neutral-50);
+  border-bottom: 1px solid var(--neutral-400);
 }
 .navigation__inner {
   display: flex;
@@ -150,15 +151,30 @@ a { color: inherit; text-decoration: none; font-size: 1.25rem; font-weight: 400;
   width: 100%;
 }
 .navigation__icon {
-  color: var(--white);
   pointer-events: all; cursor: pointer;
   display: flex; align-items: center;
 }
+.navigation__icon img {
+  height: 28px;
+  width: auto;
+}
 .navigation__menu-btn {
   background: none; border: none; cursor: pointer;
-  color: var(--white);
+  color: var(--neutral-800);
   pointer-events: all;
   display: flex; align-items: center;
+}
+.navigation__menu-btn svg {
+  width: 24px; height: 24px;
+}
+.navigation__menu-btn .icon-close {
+  display: none;
+}
+.navigation__menu-btn[aria-expanded="true"] .icon-hamburger {
+  display: none;
+}
+.navigation__menu-btn[aria-expanded="true"] .icon-close {
+  display: block;
 }
 
 /* --- Menu --- */
@@ -599,7 +615,7 @@ a { color: inherit; text-decoration: none; font-size: 1.25rem; font-weight: 400;
 @media (max-width: 767px) {
   /* Navigation */
   .navigation { padding: 0.75rem; }
-
+  .navigation__icon img { height: 24px; }
 
   /* Hero */
   .hero__content { padding: 0.75rem; }
