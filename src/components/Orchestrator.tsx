@@ -429,7 +429,7 @@ export default function Orchestrator() {
        ============================================================ */
     const welcomeTL = gsap.timeline();
     welcomeTL.from(
-      ".hero__text",
+      ".hero__heading, .hero__subheading, .hero__body",
       { y: 30, opacity: 0, duration: 0.8, ease: "expo.out", stagger: 0.15 },
       0
     );

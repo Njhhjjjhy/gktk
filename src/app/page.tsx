@@ -41,16 +41,17 @@ export default function Home() {
         {/* ========== HERO ========== */}
         <section className="hero" id="hero">
           <div className="hero__content">
-            <p className="hero__text">
-              An integrated accommodation and support platform for the
-              semiconductor supply chain, purpose-built for Singapore-based
-              family offices.
+            <h1 className="hero__heading">
+              Turnkey living for semiconductor teams in Singapore.
+            </h1>
+            <p className="hero__subheading">
+              Purpose-built accommodation for family offices serving the
+              supply chain.
             </p>
-            <p className="hero__text">
-              Furnished, move-in-ready housing with localized
-              Taiwanese-speaking support staff and professional property
-              management — a turnkey living solution so tenants can focus
-              entirely on work.
+            <p className="hero__body">
+              Furnished, move-in-ready housing with Taiwanese-speaking
+              support staff and professional property management. A complete
+              living solution so tenants can focus on work, not settling in.
             </p>
           </div>
         </section>
