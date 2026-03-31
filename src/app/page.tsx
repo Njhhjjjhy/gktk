@@ -38,37 +38,22 @@ export default function Home() {
       </h1>
 
       {/* Navigation */}
-      <header className="nav">
-        <div className="nav__inner">
-          <a className="nav__brand" href="#">
-            GKTK
+      <header className="navigation">
+        <div className="navigation__inner">
+          <a className="navigation__icon" href="#" aria-label="Home">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+            </svg>
           </a>
-          <nav className="nav__links">
-            <a className="animated-link" href="#concept">
-              <span>Concept</span>
-            </a>
-            <a className="animated-link" href="#persona">
-              <span>Persona</span>
-            </a>
-            <a className="animated-link" href="#product">
-              <span>Product</span>
-            </a>
-            <a className="animated-link" href="#irr">
-              <span>IRR</span>
-            </a>
-            <a className="animated-link" href="#risk">
-              <span>Risk</span>
-            </a>
-            <a className="animated-link" href="#exit">
-              <span>Exit</span>
-            </a>
-          </nav>
           <button
-            className="nav__menu-btn"
+            className="navigation__menu-btn"
             aria-label="Open menu"
             aria-expanded="false"
           >
-            <span className="nav__menu-btn-text">Menu</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="4" y1="8" x2="20" y2="8" />
+              <line x1="4" y1="16" x2="20" y2="16" />
+            </svg>
           </button>
         </div>
       </header>
@@ -79,12 +64,6 @@ export default function Home() {
           <div className="hero-mask">
             <div className="hero-mask__part" />
             <div className="hero-mask__part" />
-          </div>
-          <div className="hero__bg">
-            <div
-              className="image-placeholder"
-              data-label="Kumamoto aerial / building exterior"
-            />
           </div>
           <div className="hero__heading-wrapper">
             <h2 className="hero__title">
@@ -114,49 +93,40 @@ export default function Home() {
                 </span>
               </span>
             </p>
+            <div className="hero__grid">
+              <div className="hero__grid-item">
+                <h3>Furnished housing</h3>
+                <p>
+                  As semiconductor companies scale operations, they require
+                  fast, scalable housing solutions for relocated staff — not
+                  just proximity to work, but fully move-in-ready units.
+                </p>
+              </div>
+              <div className="hero__grid-item">
+                <h3>Localized support</h3>
+                <p>
+                  Taiwanese-speaking staff minimize language barriers and
+                  operational friction, handling daily challenges so tenants
+                  can focus entirely on work.
+                </p>
+              </div>
+              <div className="hero__grid-item">
+                <h3>Professional management</h3>
+                <p>
+                  We handle utilities, maintenance, and daily needs,
+                  delivering a turnkey accommodation and support model that
+                  enhances tenant stability and efficiency.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* ========== TILT-CARD PRESENTATION ========== */}
-        <section className="presentation">
-          {/* ===== CARD 1: Concept — Type A ===== */}
-          <div className="presentation__card">
-            <div className="tilt-card-container">
-              <TiltCardA id="concept">
-                <span className="section-label">What we do</span>
-                <h2 className="tilt-card__title">Concept</h2>
-                <div className="tilt-card__grid">
-                  <div className="tilt-card__grid-item">
-                    <h3>Furnished housing</h3>
-                    <p>
-                      As semiconductor companies scale operations, they require
-                      fast, scalable housing solutions for relocated staff — not
-                      just proximity to work, but fully move-in-ready units.
-                    </p>
-                  </div>
-                  <div className="tilt-card__grid-item">
-                    <h3>Localized support</h3>
-                    <p>
-                      Taiwanese-speaking staff minimize language barriers and
-                      operational friction, handling daily challenges so tenants
-                      can focus entirely on work.
-                    </p>
-                  </div>
-                  <div className="tilt-card__grid-item">
-                    <h3>Professional management</h3>
-                    <p>
-                      We handle utilities, maintenance, and daily needs,
-                      delivering a turnkey accommodation and support model that
-                      enhances tenant stability and efficiency.
-                    </p>
-                  </div>
-                </div>
-              </TiltCardA>
-            </div>
-          </div>
+        <section className="tilt-cards-section">
 
           {/* ===== CARD 2: Persona — Type B ===== */}
-          <div className="presentation__card">
+          <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardB id="persona" variant="dark">
                 <span className="section-label">Target tenant</span>
@@ -178,7 +148,7 @@ export default function Home() {
           </div>
 
           {/* ===== CARD 3: Product — Type C ===== */}
-          <div className="presentation__card">
+          <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardC id="product" variant="dark">
                 <span className="section-label">Our offering</span>
@@ -220,7 +190,7 @@ export default function Home() {
           </div>
 
           {/* ===== CARD 4: IRR Assumptions — Type A ===== */}
-          <div className="presentation__card">
+          <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardA id="irr" align="top">
                 <span className="section-label">Financial model</span>
@@ -269,7 +239,7 @@ export default function Home() {
           </div>
 
           {/* ===== CARD 5: IRR Returns — Type A ===== */}
-          <div className="presentation__card">
+          <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardA align="top">
                 <div className="tilt-card__group">
@@ -326,7 +296,7 @@ export default function Home() {
           </div>
 
           {/* ===== CARD 6: Risk 1–3 — Type C ===== */}
-          <div className="presentation__card">
+          <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardC id="risk" variant="dark" align="top">
                 <span className="section-label">Due diligence</span>
@@ -411,7 +381,7 @@ export default function Home() {
           </div>
 
           {/* ===== CARD 7: Risk 4–6 — Type C ===== */}
-          <div className="presentation__card">
+          <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardC variant="dark" align="top">
                 <div className="tilt-card__risk-item">
@@ -491,7 +461,7 @@ export default function Home() {
           </div>
 
           {/* ===== CARD 8: Exit — Type B ===== */}
-          <div className="presentation__card">
+          <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardB id="exit" variant="light">
                 <span className="section-label">Liquidity path</span>
@@ -522,22 +492,18 @@ export default function Home() {
         {/* ========== FOOTER ========== */}
         <footer className="footer">
           <div className="footer__email">
-            <span className="footer__email-label">Get in touch</span>
+            <span className="footer__email-label">Placeholder label</span>
             <h2 className="footer__email-heading">
-              <a href="mailto:hello@gktk.co">hello@gktk.co</a>
+              <a href="#">placeholder@email.co</a>
             </h2>
           </div>
           <div className="footer__bottom">
-            <div className="footer__brand">GKTK</div>
-            <nav className="footer__links">
-              <a href="#concept">Concept</a>
-              <a href="#persona">Persona</a>
-              <a href="#product">Product</a>
-              <a href="#irr">IRR</a>
-              <a href="#risk">Risk</a>
-              <a href="#exit">Exit</a>
-            </nav>
-            <span className="footer__copy">&copy; 2026 GKTK</span>
+            <div className="footer__brand">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+            </div>
+            <span className="footer__copy">&copy; 2026 Placeholder</span>
           </div>
         </footer>
       </main>
