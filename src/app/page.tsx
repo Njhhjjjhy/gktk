@@ -18,29 +18,20 @@ export default function Home() {
       <header className="navigation">
         <div className="navigation__inner">
           <a className="navigation__icon" href="#" aria-label="Home">
-            <svg width="96" height="40" viewBox="0 0 96 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19.6285 0.019949C26.7622 -0.0788008 32.2671 2.88182 36.4277 8.48493C42.1007 16.1255 47.8368 23.7211 53.5365 31.343C55.6792 34.208 55.7614 35.7705 53.9453 38.1386C52.1674 40.4574 48.2245 40.6817 46.3951 38.4049C43.4615 34.7543 40.6922 30.9768 37.8325 27.2686C34.1889 22.5449 30.5835 17.7905 26.8475 13.138C24.382 10.0674 20.9549 9.38118 17.2412 10.2462C13.795 11.0487 11.6421 13.308 10.3418 16.5418C8.80274 20.3712 10.7595 25.1693 13.781 27.3643C17.189 29.8399 21.9368 29.8886 25.511 27.4986C27.2595 26.3293 28.3497 24.6518 29.0992 22.7762C29.499 21.7755 29.799 21.5837 30.488 22.5255C32.0378 24.6436 33.5706 26.7768 35.1988 28.8361C36.0005 29.8505 36.0138 30.6843 35.2357 31.6968C31.0375 37.1605 25.5269 39.9005 18.4912 39.5611C7.01851 39.0061 -1.17799 28.8136 0.13885 17.0749C1.03033 9.12806 8.11057 1.79307 14.9629 0.459323C16.5019 0.159949 18.0506 -0.0706758 19.6285 0.019949V0.019949Z" fill="url(#nav-logo-grad1)"/>
-              <path d="M66.2398 17.8178C64.3486 15.2659 62.4237 12.6872 60.5254 10.0897C60.1924 9.63404 60.5216 9.21591 60.7935 8.83216C64.1659 4.08217 68.6818 1.1553 74.6535 0.688429C83.3027 0.0115549 89.6882 3.61842 93.6783 11.0097C98.6457 20.2121 95.402 31.7459 86.2548 37.1865C77.8029 42.2134 66.0666 39.8559 59.853 31.3321C54.2456 23.6403 48.4829 16.0572 42.8067 8.41279C40.7563 5.65154 40.6697 4.23342 42.2998 2.02968C43.9866 -0.250945 48.0893 -0.417194 49.8213 1.82905C55.104 8.67904 60.3217 15.5765 65.5719 22.4509C66.6034 23.8015 67.6439 25.1459 68.713 26.4671C72.3439 30.9552 78.6269 31.5971 82.8328 27.924C87.4653 23.8784 87.7799 17.5559 83.5562 13.4053C78.313 8.25342 69.6535 10.0215 66.9224 16.7965C66.7951 17.1128 66.8549 17.5309 66.2398 17.8184V17.8178Z" fill="url(#nav-logo-grad2)"/>
-              <defs>
-                <linearGradient id="nav-logo-grad1" x1="55.2311" y1="-3.37577e-06" x2="-3.99589" y2="7.21973" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#FBB931"/>
-                  <stop offset="1" stopColor="#FF8660"/>
-                </linearGradient>
-                <linearGradient id="nav-logo-grad2" x1="96.0004" y1="0.229001" x2="37.2028" y2="7.42172" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#FBB931"/>
-                  <stop offset="1" stopColor="#FF8660"/>
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="/logobase.svg" alt="GKTK" />
           </a>
           <button
             className="navigation__menu-btn"
             aria-label="Open menu"
             aria-expanded="false"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="4" y1="8" x2="20" y2="8" />
               <line x1="4" y1="16" x2="20" y2="16" />
+            </svg>
+            <svg className="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="6" y1="18" x2="18" y2="6" />
             </svg>
           </button>
         </div>

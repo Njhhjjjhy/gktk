@@ -88,7 +88,7 @@
     ".qa-close-btn:hover{background:#ef4444;color:#fff;}",
 
     /* viewport area */
-    "#qa-viewport{flex:1;position:relative;overflow:hidden;background:#111216;background-image:radial-gradient(circle,#2a2d35 1px,transparent 1px);background-size:24px 24px;display:flex;align-items:center;justify-content:center;}",
+    "#qa-viewport{flex:1;position:relative;overflow:auto;background:#111216;background-image:radial-gradient(circle,#2a2d35 1px,transparent 1px);background-size:24px 24px;display:flex;align-items:start;justify-content:center;padding:24px 0;}",
 
     /* iframe wrapper */
     "#qa-frame-wrap{border:1px solid #2a2d35;border-radius:4px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.5);background:#fff;transition:width .3s cubic-bezier(.4,0,.2,1),height .3s cubic-bezier(.4,0,.2,1);}",
@@ -217,12 +217,8 @@
   // Iframe
   var frame = document.createElement("iframe");
   frame.id = "qa-frame";
-  var frameSrc = window.location.href;
-  if (frameSrc.indexOf("?") !== -1) {
-    frameSrc += "&_qa=1";
-  } else {
-    frameSrc += "?_qa=1";
-  }
+  var frameSrc = window.location.origin + window.location.pathname;
+  frameSrc += "?_qa=1&_t=" + Date.now();
   frame.src = frameSrc;
   frameWrap.appendChild(frame);
 
