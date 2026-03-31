@@ -46,6 +46,7 @@ gktk/
 - **Single Orchestrator pattern**: All GSAP timelines, event listeners, scroll triggers, and mobile interaction strategies live in one `useEffect` in Orchestrator.tsx. This keeps animation interdependencies explicit and cleanup reliable.
 - **Server-rendered markup, client-side motion**: page.tsx is a server component that renders all HTML. Orchestrator is the only client component, attaching animations after hydration.
 - **CSS-only responsive layout**: No JavaScript-based responsive logic for layout. Media queries handle all breakpoint changes. Only Lenis initialization/destruction responds to breakpoint changes via `matchMedia`.
+- **Strict color palette with aliases**: All colors consolidated into four categories (Brand, Interaction, Base, Neutral). Semantic aliases (`--bg`, `--fg`, `--accent`, etc.) point to palette tokens rather than hardcoded hex values, ensuring no off-palette colors exist in the stylesheet.
 - **Three-strategy mobile tilt**: Gyroscope, touch-drag, and idle float in priority order with graceful fallback, handling iOS permission requirements and Android auto-detection.
 
 ## Codebase metrics
