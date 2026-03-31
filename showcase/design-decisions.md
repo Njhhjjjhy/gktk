@@ -38,7 +38,7 @@ A full neutral scale (50-950) provides fine-grained control for secondary text, 
 
 The presentation is designed to reward exploration without requiring it. Every section is fully readable without interaction — the 3D tilt, gyroscope, and layer cycling add delight on top of functional content.
 
-- **Desktop**: Mouse-driven 3D tilt (up to 40 degrees) with scale-up on hover. Smooth scroll via Lenis. Hover triggers image layer cycling.
+- **Desktop**: Mouse-driven 3D tilt (up to 10 degrees) with subtle scale-up on hover. Smooth scroll via Lenis. Hover triggers image layer cycling.
 - **Mobile**: Gyroscope tilt on capable devices, touch-drag tilt as fallback, ambient idle float as baseline. Touch triggers image cycling. Native scroll for reliability.
 - **Transitions**: Full-screen wipe for anchor navigation creates a cinematic section-to-section flow.
 
@@ -47,7 +47,7 @@ The presentation is designed to reward exploration without requiring it. Every s
 Three tilt card variants serve different content types:
 
 - **Type A** (TiltCardA): Data-heavy layouts with labeled rows, dot leaders, and value columns. Used for IRR assumptions and waterfall distribution.
-- **Type B** (TiltCardB): Narrative text blocks with optional split-image layout. Used for persona and exit strategy. Supports light and dark variants.
+- **Type B** (TiltCardB): Text-only narrative blocks. Used for persona and exit strategy. Supports light and dark variants.
 - **Type C** (TiltCardC): Grid layouts for product items and risk factors with image placeholders. Always dark variant.
 
 All three share the same 3D transform pipeline (perspective, rotation, scale) and entrance animation behavior.
