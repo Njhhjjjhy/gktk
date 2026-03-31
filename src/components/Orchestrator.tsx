@@ -615,25 +615,11 @@ export default function Orchestrator() {
       start: "top 80%",
       once: true,
       onEnter: () => {
-        gsap.from(".footer__email-label", {
-          y: 20,
-          opacity: 0,
-          duration: 0.7,
-          ease: "expo.out",
-        });
-        gsap.from(".footer__email-text", {
-          y: 40,
-          opacity: 0,
-          duration: 1,
-          ease: "expo.out",
-          delay: 0.15,
-        });
         gsap.from(".footer__bottom", {
           y: 10,
           opacity: 0,
           duration: 0.6,
           ease: "expo.out",
-          delay: 0.4,
         });
       },
     });
