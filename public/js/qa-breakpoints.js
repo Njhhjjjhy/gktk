@@ -18,8 +18,8 @@
      Project breakpoints (scraped from globals.css)
      ---------------------------------------------------------- */
   var breakpoints = [
-    { px: 1100, dir: "max", label: "Tablet — grid collapse, smaller type" },
-    { px: 767, dir: "max", label: "Mobile — vertical flow, nav hidden" }
+    { px: 1024, dir: "max", label: "Tablet — grid collapse, smaller type" },
+    { px: 744, dir: "max", label: "Mobile — vertical flow, nav hidden" }
   ];
 
   /* ----------------------------------------------------------

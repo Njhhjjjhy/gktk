@@ -336,7 +336,7 @@ export default function Orchestrator() {
        Lenis smooth scroll
        ============================================================ */
     let lenis: Lenis | null = null;
-    const mql = window.matchMedia("(max-width: 767px)");
+    const mql = window.matchMedia("(max-width: 744px)");
 
     function initLenis() {
       if (lenis) return;
@@ -617,7 +617,7 @@ export default function Orchestrator() {
           duration: 0.7,
           ease: "expo.out",
         });
-        gsap.from(".footer__email-heading", {
+        gsap.from(".footer__email-text", {
           y: 40,
           opacity: 0,
           duration: 1,

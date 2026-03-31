@@ -12,8 +12,6 @@ export default function Home() {
       <div className="page-transition-wipe" />
       <div className="noise-overlay" />
 
-      <h1 className="seo-heading">GKTK</h1>
-
       {/* Navigation */}
       <header className="navigation">
         <div className="navigation__inner">
@@ -92,31 +90,31 @@ export default function Home() {
                     <div className="tilt-card__product-image">
                       <CyclingLayers />
                     </div>
-                    <h4>Design concepts</h4>
+                    <h3>Design concepts</h3>
                   </div>
                   <div className="tilt-card__product-item">
                     <div className="tilt-card__product-image">
                       <CyclingLayers />
                     </div>
-                    <h4>Building exterior</h4>
+                    <h3>Building exterior</h3>
                   </div>
                   <div className="tilt-card__product-item">
                     <div className="tilt-card__product-image">
                       <CyclingLayers />
                     </div>
-                    <h4>Interior layouts</h4>
+                    <h3>Interior layouts</h3>
                   </div>
                   <div className="tilt-card__product-item">
                     <div className="tilt-card__product-image">
                       <CyclingLayers />
                     </div>
-                    <h4>Common spaces</h4>
+                    <h3>Common spaces</h3>
                   </div>
                   <div className="tilt-card__product-item">
                     <div className="tilt-card__product-image">
                       <CyclingLayers />
                     </div>
-                    <h4>On-the-ground support</h4>
+                    <h3>On-the-ground support</h3>
                   </div>
                 </div>
               </TiltCardC>
@@ -131,9 +129,9 @@ export default function Home() {
                 <h2 className="tilt-card__title">Investment returns</h2>
 
                 <div className="tilt-card__group">
-                  <h4 className="tilt-card__group-label">
+                  <h3 className="tilt-card__group-label">
                     Investment assumptions
-                  </h4>
+                  </h3>
                   {[
                     ["Total investment cost", "¥2,000,000,000"],
                     ["Bank loan (debt)", "¥1,000,000,000"],
@@ -153,9 +151,9 @@ export default function Home() {
                 </div>
 
                 <div className="tilt-card__group">
-                  <h4 className="tilt-card__group-label">
+                  <h3 className="tilt-card__group-label">
                     Exit and profit calculation
-                  </h4>
+                  </h3>
                   {[
                     ["Total cumulative cash flow (5 years)", "¥440,000,000"],
                     ["Exit capital gain", "¥500,000,000"],
@@ -177,9 +175,9 @@ export default function Home() {
             <div className="tilt-card-container">
               <TiltCardA align="top">
                 <div className="tilt-card__group">
-                  <h4 className="tilt-card__group-label">
+                  <h3 className="tilt-card__group-label">
                     Waterfall distribution
-                  </h4>
+                  </h3>
                   {[
                     ["Hurdle rate (preferred return)", "7%"],
                     ["Hurdle amount (LP preferred return)", "¥350,000,000"],
@@ -196,9 +194,9 @@ export default function Home() {
                 </div>
 
                 <div className="tilt-card__group tilt-card__group--highlight">
-                  <h4 className="tilt-card__group-label">
+                  <h3 className="tilt-card__group-label">
                     Final investor returns (post 20.42% withholding tax)
-                  </h4>
+                  </h3>
                   <div className="tilt-card__row">
                     <span className="tilt-card__row-label">
                       Investor take-home
@@ -242,9 +240,9 @@ export default function Home() {
                   <div className="tilt-card__risk-image">
                     <CyclingLayers />
                   </div>
-                  <h4 className="tilt-card__risk-label">
+                  <h3 className="tilt-card__risk-label">
                     Overreliance on the semiconductor industry
-                  </h4>
+                  </h3>
                   <div className="tilt-card__risk-body">
                     <p>
                       If TSMC slows construction or geopolitical shifts cause
@@ -252,7 +250,7 @@ export default function Home() {
                       vacancy.
                     </p>
                     <div>
-                      <h5 className="tilt-card__hedge-label">Hedge</h5>
+                      <h4 className="tilt-card__hedge-label">Hedge</h4>
                       <p>
                         Kumamoto has already formed a full industry cluster,
                         attracting Sony, Tokyo Electron, ASML, and other global
@@ -267,9 +265,9 @@ export default function Home() {
                   <div className="tilt-card__risk-image">
                     <CyclingLayers />
                   </div>
-                  <h4 className="tilt-card__risk-label">
+                  <h3 className="tilt-card__risk-label">
                     Interest rate and currency risk
-                  </h4>
+                  </h3>
                   <div className="tilt-card__risk-body">
                     <p>
                       If the Bank of Japan raises rates significantly, loan
@@ -277,7 +275,7 @@ export default function Home() {
                       returns.
                     </p>
                     <div>
-                      <h5 className="tilt-card__hedge-label">Hedge</h5>
+                      <h4 className="tilt-card__hedge-label">Hedge</h4>
                       <p>
                         We borrow directly from local Japanese banks in JPY and
                         collect rent in JPY, creating a natural hedge. Lease
@@ -291,16 +289,16 @@ export default function Home() {
                   <div className="tilt-card__risk-image">
                     <CyclingLayers />
                   </div>
-                  <h4 className="tilt-card__risk-label">
+                  <h3 className="tilt-card__risk-label">
                     Construction cost and delay risk
-                  </h4>
+                  </h3>
                   <div className="tilt-card__risk-body">
                     <p>
                       Japan faces severe labor shortages and rising material
                       costs. Budget overruns or delays could reduce IRR.
                     </p>
                     <div>
-                      <h5 className="tilt-card__hedge-label">Hedge</h5>
+                      <h4 className="tilt-card__hedge-label">Hedge</h4>
                       <p>
                         Our local development partner directly engages domestic
                         contractors under fixed-price contracts. Modular and
@@ -322,7 +320,7 @@ export default function Home() {
                   <div className="tilt-card__risk-image">
                     <CyclingLayers />
                   </div>
-                  <h4 className="tilt-card__risk-label">Tax efficiency</h4>
+                  <h3 className="tilt-card__risk-label">Tax efficiency</h3>
                   <div className="tilt-card__risk-body">
                     <p>
                       Japan imposes high taxes on foreign real estate investment,
@@ -330,7 +328,7 @@ export default function Home() {
                       repatriation to Singapore-based SFOs is critical.
                     </p>
                     <div>
-                      <h5 className="tilt-card__hedge-label">Hedge</h5>
+                      <h4 className="tilt-card__hedge-label">Hedge</h4>
                       <p>
                         The GKTK structure uses a TK (Tokumei Kumiai / silent
                         partnership) agreement to distribute profits as fees,
@@ -345,9 +343,9 @@ export default function Home() {
                   <div className="tilt-card__risk-image">
                     <CyclingLayers />
                   </div>
-                  <h4 className="tilt-card__risk-label">
+                  <h3 className="tilt-card__risk-label">
                     Competition from major Japanese developers
-                  </h4>
+                  </h3>
                   <div className="tilt-card__risk-body">
                     <p>
                       Companies like Mitsui Fudosan and Mitsubishi Estate are
@@ -355,7 +353,7 @@ export default function Home() {
                       comparable pricing threaten tenant retention.
                     </p>
                     <div>
-                      <h5 className="tilt-card__hedge-label">Hedge</h5>
+                      <h4 className="tilt-card__hedge-label">Hedge</h4>
                       <p>
                         Our assets are deeply integrated with the semiconductor
                         supply chain. Through 5-10 year master leases, we
@@ -370,9 +368,9 @@ export default function Home() {
                   <div className="tilt-card__risk-image">
                     <CyclingLayers />
                   </div>
-                  <h4 className="tilt-card__risk-label">
+                  <h3 className="tilt-card__risk-label">
                     Investor control limitations under GKTK
-                  </h4>
+                  </h3>
                   <div className="tilt-card__risk-body">
                     <p>
                       TK investors cannot interfere with operations without
@@ -380,7 +378,7 @@ export default function Home() {
                       Japanese partner need protective mechanisms.
                     </p>
                     <div>
-                      <h5 className="tilt-card__hedge-label">Hedge</h5>
+                      <h4 className="tilt-card__hedge-label">Hedge</h4>
                       <p>
                         The agreement includes negative covenants with trigger
                         mechanisms for material events. CapitaLand serves as
@@ -427,9 +425,9 @@ export default function Home() {
         <footer className="footer">
           <div className="footer__email">
             <span className="footer__email-label">Placeholder label</span>
-            <h2 className="footer__email-heading">
+            <p className="footer__email-text">
               <a href="#">placeholder@email.co</a>
-            </h2>
+            </p>
           </div>
           <div className="footer__bottom">
             <div className="footer__brand">
