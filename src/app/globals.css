@@ -193,13 +193,13 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
 .navigation__menu-btn svg {
   width: 24px; height: 24px;
 }
-.navigation__menu-btn .icon-close {
+.navigation__menu-btn .navigation__icon-close {
   display: none;
 }
-.navigation__menu-btn[aria-expanded="true"] .icon-hamburger {
+.navigation__menu-btn[aria-expanded="true"] .navigation__icon-hamburger {
   display: none;
 }
-.navigation__menu-btn[aria-expanded="true"] .icon-close {
+.navigation__menu-btn[aria-expanded="true"] .navigation__icon-close {
   display: block;
 }
 
