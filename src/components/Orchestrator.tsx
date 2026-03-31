@@ -425,46 +425,9 @@ export default function Orchestrator() {
     );
 
 /* ============================================================
-       Preloader
-       ============================================================ */
-    const welcomeTL = gsap.timeline({ paused: true });
-
-    const preloaderTL = gsap.timeline({
-      onComplete: () => {
-        const el = document.querySelector<HTMLElement>(".preloader");
-        if (el) el.style.display = "none";
-        welcomeTL.play();
-      },
-    });
-
-    const digitCols = document.querySelectorAll(".preloader__digit-col");
-    if (digitCols.length >= 3) {
-      preloaderTL.to(
-        digitCols[2],
-        { yPercent: -90, duration: 0.3, ease: "power4.inOut" },
-        0
-      );
-      preloaderTL.to(
-        digitCols[1],
-        { yPercent: -90, duration: 0.5, ease: "power3.inOut" },
-        0
-      );
-      preloaderTL.to(
-        digitCols[0],
-        { yPercent: -90, duration: 0.3, ease: "power2.inOut" },
-        0.4
-      );
-    }
-
-    preloaderTL.to(
-      ".preloader",
-      { yPercent: -100, duration: 1.4, ease: "power3.inOut" },
-      "+=0.2"
-    );
-
-    /* ============================================================
        Hero entrance — welcome timeline
        ============================================================ */
+    const welcomeTL = gsap.timeline();
     welcomeTL.from(
       ".navigation",
       { yPercent: -100, duration: 0.4, ease: "expo.out" },
