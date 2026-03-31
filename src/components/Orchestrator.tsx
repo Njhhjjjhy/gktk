@@ -418,7 +418,7 @@ export default function Orchestrator() {
     }
 
     const anchorLinks = document.querySelectorAll<HTMLAnchorElement>(
-      '.menu-overlay__link[href^="#"]'
+      '.hamburger-menu__menu-link[href^="#"]'
     );
     anchorLinks.forEach((link) =>
       link.addEventListener("click", handleAnchorClick)
@@ -444,14 +444,14 @@ export default function Orchestrator() {
       { autoAlpha: 1, duration: 0.5, ease: "power3.inOut" },
       0
     );
-    menuTL.set(".menu-overlay", { visibility: "visible" }, 0);
+    menuTL.set(".hamburger-menu", { visibility: "visible" }, 0);
     menuTL.to(
-      ".menu-overlay",
+      ".hamburger-menu",
       { autoAlpha: 1, duration: 0.5, ease: "power3.inOut" },
       0
     );
     menuTL.from(
-      ".menu-overlay__link",
+      ".hamburger-menu__menu-link",
       {
         yPercent: 100,
         autoAlpha: 0,
@@ -463,24 +463,28 @@ export default function Orchestrator() {
     );
 
     const menuBtn = document.querySelector(".navigation__menu-btn");
+    const menuLabel = menuBtn?.querySelector(".navigation__menu-label");
     function toggleMenu() {
       if (menuTL.reversed()) {
         menuTL.play();
         menuBtn?.setAttribute("aria-expanded", "true");
+        if (menuLabel) menuLabel.textContent = "Close";
         lenis?.stop();
       } else {
         menuTL.reverse();
         menuBtn?.setAttribute("aria-expanded", "false");
+        if (menuLabel) menuLabel.textContent = "Menu";
         lenis?.start();
       }
     }
     menuBtn?.addEventListener("click", toggleMenu);
 
-    document.querySelectorAll(".menu-overlay__link").forEach((link) => {
+    document.querySelectorAll(".hamburger-menu__menu-link").forEach((link) => {
       link.addEventListener("click", () => {
         if (!menuTL.reversed()) {
           menuTL.reverse();
           menuBtn?.setAttribute("aria-expanded", "false");
+          if (menuLabel) menuLabel.textContent = "Menu";
           lenis?.start();
         }
       });
@@ -632,6 +636,19 @@ export default function Orchestrator() {
           delay: 0.4,
         });
       },
+    });
+
+    /* ============================================================
+       Active menu link tracking
+       ============================================================ */
+    const allMenuLinks = document.querySelectorAll<HTMLAnchorElement>(
+      ".hamburger-menu__menu-link"
+    );
+    allMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        allMenuLinks.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+      });
     });
 
     /* ============================================================

@@ -7,19 +7,19 @@
 
 /* --- Design Tokens --- */
 :root {
-  --bg: #F9F9F9;
-  --fg: #1E1F20;
-  --bg-dark: #1A1B1E;
-  --bg-invert: #1E1F20;
-  --fg-invert: #FEFEFE;
-  --image-bg: #EDEEF1;
-  --image-bg-dark: #2A2C31;
+  /* Brand */
   --amber: #FBB931;
   --orange: #FF9424;
-  --accent: #FBB931;
-  --accent-hover: #FFB111;
+  /* Interaction */
+  --error: #D03131;
+  --success: #19B64E;
+  --disabled: #8E8F8F;
+  --hyperlink: #1282C0;
+  /* Base */
   --black: #1E1F20;
   --white: #FEFEFE;
+  --background: #F9F9F9;
+  /* Neutral */
   --neutral-50: #FFFFFF;
   --neutral-100: #EDEEF1;
   --neutral-200: #D8DBDF;
@@ -31,6 +31,16 @@
   --neutral-800: #40444C;
   --neutral-900: #383A42;
   --neutral-950: #25272C;
+  /* Aliases */
+  --bg: var(--background);
+  --fg: var(--black);
+  --bg-dark: var(--black);
+  --bg-invert: var(--black);
+  --fg-invert: var(--white);
+  --image-bg: var(--neutral-100);
+  --image-bg-dark: var(--neutral-950);
+  --accent: var(--amber);
+  --accent-hover: var(--amber);
   /* Hero (h1) */
   --hero-heading-mobile: 2.441rem;
   --hero-heading-tablet: 3.052rem;
@@ -63,6 +73,8 @@
   --footer-body-mobile: 1rem;
   --footer-body-tablet: 1rem;
   --footer-body-desktop: 1.25rem;
+  --nav-height: calc(1.5rem * 2 + 28px + 1px);
+  --nav-height-mobile: calc(0.75rem * 2 + 24px + 1px);
   --radius-s: 0.5rem;
   --radius-m: 0.75rem;
   --radius-l: 1rem;
@@ -193,14 +205,31 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
 .navigation__menu-btn svg {
   width: 24px; height: 24px;
 }
-.navigation__menu-btn .icon-close {
+.navigation__menu-btn .navigation__icon-close {
   display: none;
 }
-.navigation__menu-btn[aria-expanded="true"] .icon-hamburger {
+.navigation__menu-btn[aria-expanded="true"] .navigation__icon-hamburger {
   display: none;
 }
-.navigation__menu-btn[aria-expanded="true"] .icon-close {
+.navigation__menu-btn[aria-expanded="true"] .navigation__icon-close {
   display: block;
+}
+.navigation__menu-label {
+  display: none;
+  font-family: var(--font-rem), sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--neutral-800);
+}
+@media (min-width: 745px) {
+  .navigation__menu-btn svg { display: none; }
+  .navigation__menu-label { display: inline; }
+}
+@media (min-width: 745px) {
+  .navigation__menu-btn[aria-expanded="true"] .navigation__icon-close { display: none; }
+}
+.navigation__menu-btn:hover .navigation__menu-label {
+  color: var(--amber);
 }
 
 /* --- Menu --- */
@@ -211,27 +240,30 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   -webkit-backdrop-filter: blur(12px);
   visibility: hidden; opacity: 0;
 }
-.menu-overlay {
+.hamburger-menu {
   position: fixed; inset: 0;
   z-index: 40;
-  background-color: var(--bg-dark);
+  background-color: var(--neutral-50);
   display: flex; flex-direction: column;
-  justify-content: center;
-  padding: 6rem 1.5rem 2rem;
+  justify-content: flex-start;
+  padding: calc(var(--nav-height) + 2.441rem) 1.5rem 2rem;
+  gap: 1.563rem;
   visibility: hidden; opacity: 0;
 }
-.menu-overlay__link {
-  font-size: 3.815rem; font-weight: 800;
-  color: var(--fg-invert);
+.hamburger-menu__menu-link {
+  font-family: var(--font-rem), sans-serif;
+  font-size: var(--component-heading-desktop); font-weight: 400;
+  color: var(--neutral-700);
   text-decoration: none;
   line-height: 1.15;
   display: block;
-  padding: 0.25rem 0;
-  clip-path: inset(0 0 0 0);
+  padding: 0 0 0.125rem;
+  overflow: hidden;
   transition: color 300ms ease;
 }
-.menu-overlay__link:hover { color: var(--accent); }
-.menu-overlay__link span {
+.hamburger-menu__menu-link:hover span { text-decoration: underline; }
+.hamburger-menu__menu-link.active { color: var(--neutral-900) !important; font-weight: 600 !important; }
+.hamburger-menu__menu-link span {
   display: inline-block; position: relative; line-height: 1;
 }
 
@@ -679,7 +711,8 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   .footer__copy { font-size: var(--footer-body-tablet); }
 
   /* Menu */
-  .menu-overlay__link { font-size: 3.052rem; }
+  .hamburger-menu { padding-top: calc(var(--nav-height) + 1.953rem); gap: 1.25rem; }
+  .hamburger-menu__menu-link { font-size: var(--component-heading-tablet); }
 }
 
 /* ============================================================
@@ -697,11 +730,8 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   .hero__body { font-size: var(--hero-body-mobile); }
 
   /* Menu */
-  .menu-overlay { padding: 6rem 0.75rem 2rem; }
-  .menu-overlay__link {
-    font-size: 2.441rem; font-weight: 800;
-    line-height: 1.15; padding: 0.25rem 0;
-  }
+  .hamburger-menu { padding: calc(var(--nav-height-mobile) + 1.5rem) 0.75rem 2rem; gap: 1rem; }
+  .hamburger-menu__menu-link { font-size: var(--component-heading-mobile); }
 
   /* Tilt cards — section + container */
   .tilt-cards-section__card { padding: 1.5rem 0.75rem; min-height: auto; }

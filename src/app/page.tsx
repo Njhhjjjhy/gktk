@@ -23,14 +23,15 @@ export default function Home() {
             aria-label="Open menu"
             aria-expanded="false"
           >
-            <svg className="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="navigation__icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="4" y1="8" x2="20" y2="8" />
               <line x1="4" y1="16" x2="20" y2="16" />
             </svg>
-            <svg className="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="navigation__icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="6" y1="6" x2="18" y2="18" />
               <line x1="6" y1="18" x2="18" y2="6" />
             </svg>
+            <span className="navigation__menu-label">Menu</span>
           </button>
         </div>
       </header>
@@ -456,24 +457,21 @@ export default function Home() {
       <div className="menu-backdrop" />
 
       {/* Menu overlay */}
-      <div className="menu-overlay">
-        <a className="menu-overlay__link" href="#hero">
-          <span>Concept</span>
+      <div className="hamburger-menu">
+        <a className="hamburger-menu__menu-link" href="#persona">
+          <span>01 Persona</span>
         </a>
-        <a className="menu-overlay__link" href="#persona">
-          <span>Persona</span>
+        <a className="hamburger-menu__menu-link" href="#product">
+          <span>02 Product &amp; solution</span>
         </a>
-        <a className="menu-overlay__link" href="#product">
-          <span>Product &amp; solution</span>
+        <a className="hamburger-menu__menu-link" href="#irr">
+          <span>03 IRR</span>
         </a>
-        <a className="menu-overlay__link" href="#irr">
-          <span>IRR</span>
+        <a className="hamburger-menu__menu-link" href="#risk">
+          <span>04 Risk factors</span>
         </a>
-        <a className="menu-overlay__link" href="#risk">
-          <span>Risk factors</span>
-        </a>
-        <a className="menu-overlay__link" href="#exit">
-          <span>Exit strategy</span>
+        <a className="hamburger-menu__menu-link" href="#exit">
+          <span>05 Exit strategy</span>
         </a>
       </div>
 
