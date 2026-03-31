@@ -19,9 +19,13 @@ Each tilt card section fades up from 60px below when scrolling into the 75% view
 
 Anchor navigation triggers a full-screen wipe animation — a dark overlay slides up to cover the viewport, the scroll position jumps to the target, then the overlay slides away to reveal the destination. Built as a GSAP timeline coordinating with Lenis scroll.
 
-## Animated Navigation Menu
+## Hamburger Menu
 
-A full-screen overlay menu with backdrop blur. Menu items animate in with staggered slide-up reveals. Opening the menu stops Lenis scroll; closing restores it. The hamburger button toggles between a hamburger icon (closed) and an X icon (open) via CSS using the `aria-expanded` attribute, with both icons at 24x24 on mobile. The toggle drives a reversible GSAP timeline.
+A full-screen overlay menu (`.hamburger-menu`) with backdrop blur. Five numbered menu links (01 Persona through 05 Exit strategy) animate in with staggered slide-up reveals. Opening the menu stops Lenis scroll; closing restores it.
+
+The menu button is responsive: on mobile, it shows SVG hamburger/close icons (24x24) toggled via CSS and `aria-expanded`; on tablet and above, the icons are hidden and a text label (`navigation__menu-label`) displays "Menu" or "Close", toggled via JS in Orchestrator.tsx. The label uses REM Semibold at 1.25rem and turns amber on hover.
+
+Menu links use BEM class `hamburger-menu__menu-link` and are styled in REM Regular (weight 400) neutral-700 by default. Clicking a link sets an `.active` class via JS, which applies REM Semibold (weight 600) neutral-900. Hovering underlines the link text. Font size scales using `--component-heading` design tokens across breakpoints. Spacing (padding-top, gap) scales with `--nav-height` CSS custom properties per breakpoint.
 
 ## Image Layer Cycling
 

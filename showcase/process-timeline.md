@@ -80,6 +80,19 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 - Four-level heading hierarchy: only the hero uses h1, sections use h2, components h3, sub-components h4.
 - Footer body-only — no heading semantics for non-content areas.
 
+## Phase 8: Hamburger Menu & Color Consolidation (March 31, 2026)
+
+**What happened:** Renamed the menu overlay to hamburger-menu with BEM naming throughout (`.hamburger-menu`, `.hamburger-menu__menu-link`, `.navigation__icon-hamburger`, `.navigation__icon-close`, `.navigation__menu-label`). Made the menu button responsive: mobile shows SVG hamburger/close icons, tablet+ shows "Menu"/"Close" text label in REM Semibold. Menu links styled with REM Regular neutral-700 (unselected) and REM Semibold neutral-900 (active on click via JS), with underline on hover. Link font sizes use `--component-heading` design tokens; spacing scales with `--nav-height` custom properties. Menu items numbered 01-05, "Concept" removed. Consolidated the color system into a strict palette (Brand, Interaction, Base, Neutral) with all aliases pointing to palette tokens — removed off-palette hardcoded values for `--bg-dark`, `--image-bg-dark`, and `--accent-hover`.
+
+**Key commits:**
+- Rename menu-overlay to hamburger-menu, add responsive menu button, consolidate color palette
+
+**Decisions made:**
+- Responsive menu trigger: SVG icons on mobile for compact touch target, text label on tablet+ for clarity.
+- Active menu link state via JS click handler rather than scroll-based detection, for explicit user intent.
+- Strict color palette enforcement: every color in the stylesheet traces to a named palette token via aliases.
+- Numbered menu items (01-05) without "Concept" for a cleaner, more focused navigation.
+
 ---
 
 | Phase | Dates | Focus | Commits |
@@ -91,3 +104,4 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 | 5. Mobile Nav Fix | Mar 31 | Safari compatibility, real logo | 1 |
 | 6. Hero & Nav Redesign | Mar 31 | Mobile nav redesign, QA tool fix | 1 |
 | 7. Typography System | Mar 31 | Full type system, hero redesign, iOS breakpoints | 2 |
+| 8. Hamburger Menu | Mar 31 | BEM rename, responsive trigger, color consolidation | 1 |
