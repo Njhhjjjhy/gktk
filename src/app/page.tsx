@@ -33,9 +33,7 @@ export default function Home() {
       <div className="page-transition-wipe" />
       <div className="noise-overlay" />
 
-      <h1 className="seo-heading">
-        GKTK — Semiconductor Housing for Kumamoto
-      </h1>
+      <h1 className="seo-heading">GKTK</h1>
 
       {/* Navigation */}
       <header className="navigation">
@@ -61,74 +59,28 @@ export default function Home() {
       <main>
         {/* ========== HERO ========== */}
         <section className="hero" id="hero">
-          <div className="hero-mask">
-            <div className="hero-mask__part" />
-            <div className="hero-mask__part" />
-          </div>
-          <div className="hero__heading-wrapper">
-            <h2 className="hero__title">
-              <span className="text-mask">
-                <span className="text-mask__inner">Semiconductor</span>
-              </span>
-              <span className="text-mask">
-                <span className="text-mask__inner">housing for</span>
-              </span>
-              <span className="text-mask">
-                <span className="text-mask__inner">Kumamoto&rsquo;s</span>
-              </span>
-              <span className="text-mask">
-                <span className="text-mask__inner">
-                  <span className="hero__accent">next decade</span>
-                </span>
-              </span>
-            </h2>
-          </div>
-          <div className="hero__bottom">
-            <p className="hero__sub">
-              <span className="text-mask">
-                <span className="text-mask__inner">
-                  An integrated accommodation and support platform for the
-                  semiconductor supply chain, purpose-built for Singapore-based
-                  family offices.
-                </span>
-              </span>
+          <div className="hero__content">
+            <p className="hero__text">
+              An integrated accommodation and support platform for the
+              semiconductor supply chain, purpose-built for Singapore-based
+              family offices.
             </p>
-            <div className="hero__grid">
-              <div className="hero__grid-item">
-                <h3>Furnished housing</h3>
-                <p>
-                  As semiconductor companies scale operations, they require
-                  fast, scalable housing solutions for relocated staff — not
-                  just proximity to work, but fully move-in-ready units.
-                </p>
-              </div>
-              <div className="hero__grid-item">
-                <h3>Localized support</h3>
-                <p>
-                  Taiwanese-speaking staff minimize language barriers and
-                  operational friction, handling daily challenges so tenants
-                  can focus entirely on work.
-                </p>
-              </div>
-              <div className="hero__grid-item">
-                <h3>Professional management</h3>
-                <p>
-                  We handle utilities, maintenance, and daily needs,
-                  delivering a turnkey accommodation and support model that
-                  enhances tenant stability and efficiency.
-                </p>
-              </div>
-            </div>
+            <p className="hero__text">
+              Furnished, move-in-ready housing with localized
+              Taiwanese-speaking support staff and professional property
+              management — a turnkey living solution so tenants can focus
+              entirely on work.
+            </p>
           </div>
         </section>
 
         {/* ========== TILT-CARD PRESENTATION ========== */}
         <section className="tilt-cards-section">
 
-          {/* ===== CARD 2: Persona — Type B ===== */}
-          <div className="tilt-cards-section__card">
+          {/* ===== tilt-card-1: Persona — Type B ===== */}
+          <div className="tilt-cards-section__card" id="persona">
             <div className="tilt-card-container">
-              <TiltCardB id="persona" variant="dark">
+              <TiltCardB variant="dark">
                 <span className="section-label">Target tenant</span>
                 <h2 className="tilt-card__title">Who we build for</h2>
                 <p>
@@ -147,10 +99,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ===== CARD 3: Product — Type C ===== */}
-          <div className="tilt-cards-section__card">
+          {/* ===== tilt-card-2: Product & solution — Type C ===== */}
+          <div className="tilt-cards-section__card" id="product">
             <div className="tilt-card-container">
-              <TiltCardC id="product" variant="dark">
+              <TiltCardC variant="dark">
                 <span className="section-label">Our offering</span>
                 <h2 className="tilt-card__title">Product &amp; solution</h2>
                 <div className="tilt-card__product-grid">
@@ -189,10 +141,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ===== CARD 4: IRR Assumptions — Type A ===== */}
-          <div className="tilt-cards-section__card">
+          {/* ===== tilt-card-3-1: IRR Assumptions — Type A ===== */}
+          <div className="tilt-cards-section__card" id="irr">
             <div className="tilt-card-container">
-              <TiltCardA id="irr" align="top">
+              <TiltCardA align="top">
                 <span className="section-label">Financial model</span>
                 <h2 className="tilt-card__title">Investment returns</h2>
 
@@ -238,7 +190,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ===== CARD 5: IRR Returns — Type A ===== */}
+          {/* ===== tilt-card-3-2: IRR Returns — Type A ===== */}
           <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardA align="top">
@@ -295,10 +247,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ===== CARD 6: Risk 1–3 — Type C ===== */}
-          <div className="tilt-cards-section__card">
+          {/* ===== tilt-card-4-1: Risk factors 1–3 — Type C ===== */}
+          <div className="tilt-cards-section__card" id="risk">
             <div className="tilt-card-container">
-              <TiltCardC id="risk" variant="dark" align="top">
+              <TiltCardC variant="dark" align="top">
                 <span className="section-label">Due diligence</span>
                 <h2 className="tilt-card__title">
                   Risk factors &amp; hedges
@@ -380,7 +332,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ===== CARD 7: Risk 4–6 — Type C ===== */}
+          {/* ===== tilt-card-4-2: Risk factors 4–6 — Type C ===== */}
           <div className="tilt-cards-section__card">
             <div className="tilt-card-container">
               <TiltCardC variant="dark" align="top">
@@ -460,10 +412,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ===== CARD 8: Exit — Type B ===== */}
-          <div className="tilt-cards-section__card">
+          {/* ===== tilt-card-5: Exit strategy — Type B ===== */}
+          <div className="tilt-cards-section__card" id="exit">
             <div className="tilt-card-container">
-              <TiltCardB id="exit" variant="light">
+              <TiltCardB variant="light">
                 <span className="section-label">Liquidity path</span>
                 <h2 className="tilt-card__title">Exit strategy</h2>
                 <p>
@@ -513,7 +465,7 @@ export default function Home() {
 
       {/* Menu overlay */}
       <div className="menu-overlay">
-        <a className="menu-overlay__link" href="#concept">
+        <a className="menu-overlay__link" href="#hero">
           <span>Concept</span>
         </a>
         <a className="menu-overlay__link" href="#persona">

@@ -465,25 +465,15 @@ export default function Orchestrator() {
     /* ============================================================
        Hero entrance — welcome timeline
        ============================================================ */
-    welcomeTL.to(
-      ".hero-mask__part",
-      { scaleY: 0, duration: 1, ease: "power3.out" },
-      0
-    );
-    welcomeTL.to(
-      ".hero__title .text-mask__inner",
-      { yPercent: 0, duration: 0.8, ease: "expo.out", stagger: 0.1 },
-      0
-    );
     welcomeTL.from(
       ".navigation",
       { yPercent: -100, duration: 0.4, ease: "expo.out" },
       0
     );
-    welcomeTL.to(
-      ".hero__bottom .text-mask__inner",
-      { yPercent: 0, duration: 0.8, ease: "expo.out" },
-      0.4
+    welcomeTL.from(
+      ".hero__text",
+      { y: 30, opacity: 0, duration: 0.8, ease: "expo.out", stagger: 0.15 },
+      0.2
     );
 
     /* ============================================================
