@@ -9,27 +9,6 @@ import {
 export default function Home() {
   return (
     <>
-      {/* Preloader */}
-      <div className="preloader">
-        <div className="preloader__counter">
-          <div className="preloader__digit-col" data-col="0">
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => (
-              <span key={d}>{d}</span>
-            ))}
-          </div>
-          <div className="preloader__digit-col" data-col="1">
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => (
-              <span key={d}>{d}</span>
-            ))}
-          </div>
-          <div className="preloader__digit-col" data-col="2">
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => (
-              <span key={d}>{d}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="page-transition-wipe" />
       <div className="noise-overlay" />
 
