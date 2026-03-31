@@ -93,6 +93,19 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 - Strict color palette enforcement: every color in the stylesheet traces to a named palette token via aliases.
 - Numbered menu items (01-05) without "Concept" for a cleaner, more focused navigation.
 
+## Phase 9: Layout Audit & Cleanup (March 31, 2026)
+
+**What happened:** Comprehensive layout audit across all breakpoints. Made all spacing, sizing, and typography values scale distinctly per breakpoint (no more identical mobile/tablet values). Nav height set to 48px on mobile. Hero gap and max-width now scale. Tilt cards section background changed to base background color. All card variants unified to white fill (neutral-50) with neutral-200 border — collapsed duplicate dark/light selectors. Card container max-width and border-radius scale per breakpoint. Typography tokens updated: section body desktop bumped to 1.563rem, component body and footer body tablet bumped to 1.25rem, sub-component h4 tablet bumped to 1.25rem. Highlight box radius/padding, split layout gaps, product grid gaps, and footer padding all scale. Risk item borders changed to neutral-200. Hamburger menu links given 1px neutral-200 divider lines. Removed dead code: split layout CSS, content-grid CSS, image-placeholder, text-mask, unused tokens (--image-bg, --image-bg-dark). CSS restructured into 4 top-level sections matching page structure.
+
+**Key commits:**
+- Layout: responsive scaling, dead code cleanup, CSS audit
+
+**Decisions made:**
+- All cards white with neutral-200 stroke — eliminates dark/light variant complexity.
+- CSS organized by page sections (Navigation, Hero, Tilt Cards, Footer) rather than by component type.
+- Every adjacent breakpoint pair must have distinct values — no same-value mobile/tablet or tablet/desktop pairs in typography tokens.
+- Dead CSS removed rather than kept for potential future use.
+
 ---
 
 | Phase | Dates | Focus | Commits |
@@ -105,3 +118,4 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 | 6. Hero & Nav Redesign | Mar 31 | Mobile nav redesign, QA tool fix | 1 |
 | 7. Typography System | Mar 31 | Full type system, hero redesign, iOS breakpoints | 2 |
 | 8. Hamburger Menu | Mar 31 | BEM rename, responsive trigger, color consolidation | 1 |
+| 9. Layout Audit | Mar 31 | Responsive scaling, dead code cleanup, CSS restructure | 1 |

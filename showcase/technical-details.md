@@ -47,6 +47,7 @@ gktk/
 - **Server-rendered markup, client-side motion**: page.tsx is a server component that renders all HTML. Orchestrator is the only client component, attaching animations after hydration.
 - **CSS-only responsive layout**: No JavaScript-based responsive logic for layout. Media queries handle all breakpoint changes. Only Lenis initialization/destruction responds to breakpoint changes via `matchMedia`.
 - **Strict color palette with aliases**: All colors consolidated into four categories (Brand, Interaction, Base, Neutral). Semantic aliases (`--bg`, `--fg`, `--accent`, etc.) point to palette tokens rather than hardcoded hex values, ensuring no off-palette colors exist in the stylesheet.
+- **CSS organized by page sections**: Stylesheet structured into four top-level sections (Navigation, Hero, Tilt Cards, Footer) matching the page structure, with tilt card sub-layouts (product grid, data rows, risk items) nested under the Tilt Cards section.
 - **Three-strategy mobile tilt**: Gyroscope, touch-drag, and idle float in priority order with graceful fallback, handling iOS permission requirements and Android auto-detection.
 
 ## Codebase metrics
@@ -54,8 +55,8 @@ gktk/
 | Metric | Value |
 |--------|-------|
 | Lines of TypeScript/TSX | 1,294 |
-| Lines of CSS | 649 |
-| Total lines (all source) | 1,943 |
+| Lines of CSS | ~570 |
+| Total lines (all source) | ~1,864 |
 | Source files in src/ | 7 |
 | Total project files | 32 |
 | Runtime dependencies | 5 (next, react, react-dom, gsap, lenis) |

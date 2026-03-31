@@ -25,7 +25,7 @@ A full-screen overlay menu (`.hamburger-menu`) with backdrop blur. Five numbered
 
 The menu button is responsive: on mobile, it shows SVG hamburger/close icons (24x24) toggled via CSS and `aria-expanded`; on tablet and above, the icons are hidden and a text label (`navigation__menu-label`) displays "Menu" or "Close", toggled via JS in Orchestrator.tsx. The label uses REM Semibold at 1.25rem and turns amber on hover.
 
-Menu links use BEM class `hamburger-menu__menu-link` and are styled in REM Regular (weight 400) neutral-700 by default. Clicking a link sets an `.active` class via JS, which applies REM Semibold (weight 600) neutral-900. Hovering underlines the link text. Font size scales using `--component-heading` design tokens across breakpoints. Spacing (padding-top, gap) scales with `--nav-height` CSS custom properties per breakpoint.
+Menu links use BEM class `hamburger-menu__menu-link` and are styled in REM Regular (weight 400) neutral-700 by default. Each link has a 1px neutral-200 divider line below it. Clicking a link sets an `.active` class via JS, which applies REM Semibold (weight 600) neutral-900. Hovering underlines the link text. Font size scales using `--component-heading` design tokens across breakpoints. Spacing (padding-top, gap) scales with `--nav-height` CSS custom properties per breakpoint.
 
 ## Image Layer Cycling
 
@@ -37,7 +37,7 @@ Lenis smooth scroll is active on viewports above 744px, with `touchMultiplier: 0
 
 ## Responsive Design
 
-Three iOS HIG-aligned breakpoints — mobile (≤744px), tablet (745–1024px), and desktop (≥1025px) — with tuned typography, spacing, padding, and card layouts at each. The type scale uses a 1.25 ratio (major third) with CSS custom property tokens per heading level per breakpoint rather than fluid scaling. A four-level heading hierarchy (h1→h2→h3→h4) uses REM Semibold for headings and Noto Sans JP for body text.
+Three iOS HIG-aligned breakpoints — mobile (≤744px), tablet (745–1024px), and desktop (≥1025px) — with tuned typography, spacing, padding, and card layouts at each. All values scale per breakpoint: hero gap and max-width, card container max-width and border-radius, section padding, highlight box radius, split layout gaps, and footer padding. The type scale uses a 1.25 ratio (major third) with CSS custom property tokens per heading level per breakpoint rather than fluid scaling, with all adjacent breakpoints having distinct values. A four-level heading hierarchy (h1→h2→h3→h4) uses REM Semibold for headings and Noto Sans JP for body text.
 
 ## Runtime Noise Texture
 
