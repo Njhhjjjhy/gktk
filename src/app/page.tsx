@@ -31,6 +31,7 @@ export default function Home() {
               <line x1="6" y1="6" x2="18" y2="18" />
               <line x1="6" y1="18" x2="18" y2="6" />
             </svg>
+            <span className="navigation__menu-label">Menu</span>
           </button>
         </div>
       </header>
@@ -456,24 +457,21 @@ export default function Home() {
       <div className="menu-backdrop" />
 
       {/* Menu overlay */}
-      <div className="menu-overlay">
-        <a className="menu-overlay__link" href="#hero">
-          <span>Concept</span>
+      <div className="hamburger-menu">
+        <a className="hamburger-menu__menu-link" href="#persona">
+          <span>01 Persona</span>
         </a>
-        <a className="menu-overlay__link" href="#persona">
-          <span>Persona</span>
+        <a className="hamburger-menu__menu-link" href="#product">
+          <span>02 Product &amp; solution</span>
         </a>
-        <a className="menu-overlay__link" href="#product">
-          <span>Product &amp; solution</span>
+        <a className="hamburger-menu__menu-link" href="#irr">
+          <span>03 IRR</span>
         </a>
-        <a className="menu-overlay__link" href="#irr">
-          <span>IRR</span>
+        <a className="hamburger-menu__menu-link" href="#risk">
+          <span>04 Risk factors</span>
         </a>
-        <a className="menu-overlay__link" href="#risk">
-          <span>Risk factors</span>
-        </a>
-        <a className="menu-overlay__link" href="#exit">
-          <span>Exit strategy</span>
+        <a className="hamburger-menu__menu-link" href="#exit">
+          <span>05 Exit strategy</span>
         </a>
       </div>
 
