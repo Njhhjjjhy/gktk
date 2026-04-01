@@ -106,6 +106,26 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 - Every adjacent breakpoint pair must have distinct values — no same-value mobile/tablet or tablet/desktop pairs in typography tokens.
 - Dead CSS removed rather than kept for potential future use.
 
+## Phase 10: Cards Redesign (March 31, 2026)
+
+**What happened:** Renamed tilt components to cards, unified card sizing, and updated card content across the presentation.
+
+**Key commits:**
+- Cards redesign: rename tilt to cards, unify sizing, update content
+
+## Phase 11: Sticky Card Stack (April 1, 2026)
+
+**What happened:** Replaced the static vertical card layout with a scroll-driven sticky card stack. Created StickyCardStack.tsx from a generic template, adapted to the project's design tokens. On desktop/tablet (>744px), each card pins to the viewport via `position: sticky` and exits with a scale-down (1→0.96), opacity dim (1→0.4), and border-radius reveal (0→16px) driven by GSAP ScrollTrigger with scrub 0.3. On mobile (≤744px), cards use simple fade-up reveals. Reduced motion users get a plain vertical stack. Card content remains identical — the StickyCardStack only wraps existing CardB/CardC components. The Orchestrator's original card entrance animation becomes inert (targets `.cards-section__card` which no longer exists).
+
+**Key commits:**
+- Sticky card stack: scroll-driven card animation
+
+**Decisions made:**
+- Separate client component (StickyCardStack.tsx) for card scroll animation rather than adding to Orchestrator.
+- Native scroll + `position: sticky` works correctly with Lenis (no wrapper/content override).
+- Three rendering modes: desktop sticky stack, mobile fade-up, reduced motion static.
+- Last card in the stack has no sticky behavior (just a normal block).
+
 ---
 
 | Phase | Dates | Focus | Commits |
@@ -119,3 +139,5 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 | 7. Typography System | Mar 31 | Full type system, hero redesign, iOS breakpoints | 2 |
 | 8. Hamburger Menu | Mar 31 | BEM rename, responsive trigger, color consolidation | 1 |
 | 9. Layout Audit | Mar 31 | Responsive scaling, dead code cleanup, CSS restructure | 1 |
+| 10. Cards Redesign | Mar 31 | Rename tilt to cards, unify sizing, update content | 1 |
+| 11. Sticky Card Stack | Apr 1 | Scroll-driven sticky card animation | 1 |

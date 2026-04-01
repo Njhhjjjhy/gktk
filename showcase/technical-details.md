@@ -34,6 +34,7 @@ gktk/
 │       │                        #   hamburger menu, image cycling, card scroll entrance, footer entrance,
 │       │                        #   active menu link tracking
 │       ├── Cards.tsx            # CardA (unused), CardB, CardC + CyclingLayers
+│       ├── StickyCardStack.tsx  # Scroll-driven sticky card stack with desktop/mobile/reduced-motion modes
 │       └── QALoader.tsx        # Development QA utility
 ├── public/
 │   └── logobase.svg            # Brand logo source (+ other static assets)
@@ -45,9 +46,9 @@ gktk/
 
 ### Key architectural decisions
 
-- **Single client component for all interaction**: Orchestrator.tsx is the sole client component handling all runtime behavior — noise texture, Lenis smooth scroll, anchor wipe transition, hero entrance, hamburger menu, image layer cycling, card scroll-entrance fade-ups, footer entrance, and active menu link tracking. There is no dedicated gallery component.
-- **Server-rendered markup, client-side motion**: page.tsx is a server component that renders all HTML including all 7 cards in their static layout. Orchestrator is the only client component, attaching animations after hydration.
-- **Static card layout**: Cards are positioned by CSS in a standard vertical document flow. GSAP ScrollTrigger in Orchestrator.tsx adds fade-up entrance animations as each card scrolls into view — no scroll-driven positioning, no 3D transforms, no stacked deck.
+- **Two client components with clear separation**: Orchestrator.tsx handles global runtime behavior (noise texture, Lenis smooth scroll, anchor wipe transition, hero entrance, hamburger menu, image layer cycling, footer entrance, active menu link tracking). StickyCardStack.tsx owns all card scroll animation — sticky pinning, scale/dim/radius transitions on desktop, fade-up reveals on mobile, and reduced-motion fallback.
+- **Server-rendered markup, client-side motion**: page.tsx is a server component that renders all HTML. Card content is passed as a `cards` array prop to the StickyCardStack client component. Orchestrator attaches non-card animations after hydration.
+- **Scroll-driven sticky card stack**: On desktop/tablet, each card pins via `position: sticky` with GSAP ScrollTrigger driving scale-down, opacity dim, and border-radius reveal as the user scrolls past. On mobile, cards use simple fade-up reveals. Reduced motion disables all animation. Lenis native scroll (no wrapper/content override) ensures `position: sticky` works correctly.
 - **CSS-only responsive layout**: No JavaScript-based responsive logic for layout. Media queries handle all breakpoint changes. Only Lenis initialization/destruction responds to breakpoint changes via `matchMedia`.
 - **Strict color palette with aliases**: All colors consolidated into four categories (Brand, Interaction, Base, Neutral). Semantic aliases (`--bg`, `--fg`, `--accent`, etc.) point to palette tokens rather than hardcoded hex values, ensuring no off-palette colors exist in the stylesheet.
 - **CSS organized by page sections**: Stylesheet structured into top-level sections (Navigation, Hero, Cards, Footer) matching the page structure, with card sub-layouts (product grid, data rows, risk items) nested under the Cards section.
@@ -56,7 +57,7 @@ gktk/
 
 | Metric | Value |
 |--------|-------|
-| Source files in src/ | 6 |
+| Source files in src/ | 7 |
 | Runtime dependencies | 5 (next, react, react-dom, gsap, lenis) |
 | Dev dependencies | 9 |
 
