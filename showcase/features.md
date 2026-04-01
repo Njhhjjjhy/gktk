@@ -9,13 +9,15 @@ Three card variants (Type A, B, C) defined in Cards.tsx. CardB and CardC are use
 
 Seven cards in total: Persona, Product, IRR (assumptions), IRR (returns and waterfall), Risk factors 1–3, Risk factors 4–6, and Exit strategy.
 
-## Static Card Layout
+## Sticky Card Stack
 
-The cards section renders 7 cards in a static vertical layout — no scroll-driven gallery, no 3D transforms, no stacked deck. Cards stack in document order and enter the viewport with a fade-up entrance animation triggered by GSAP ScrollTrigger as the user scrolls down the page.
+On desktop and tablet (>744px), the cards section uses a scroll-driven sticky card stack. Each card pins to the viewport via `position: sticky`. As the user scrolls, the current card scales down (1 → 0.96), dims (opacity 1 → 0.4), and gains border-radius (0 → 16px), while the next card slides up naturally from below. GSAP ScrollTrigger with `scrub: 0.3` drives the exit animation. Each card slot has `min-height: 150vh` for scroll room; the last card has no sticky behavior. The StickyCardStack component (`StickyCardStack.tsx`) handles all scroll animation independently from the Orchestrator.
 
-Cards have fixed heights (420px mobile / 480px tablet / 540px desktop) with `overflow-y: auto` and a hidden scrollbar, allowing content to scroll within the card if it exceeds the card height. Content flows from the top of each card.
+On mobile (≤744px), cards stack vertically with scroll-triggered fade-up reveals (`opacity: 0, y: 40` → `opacity: 1, y: 0`) at 85% viewport entry, duration 0.6s, `power3.out` ease, triggering once.
 
-Navigation anchor IDs (persona, product, irr, risk, exit) are placed directly on the card elements, so menu links and direct URLs jump to the correct card.
+With reduced motion preferences, cards render in a simple vertical stack with no animation and no sticky positioning.
+
+Navigation anchor IDs (persona, product, irr, risk, exit) are placed on the `.sticky-card-slot` wrapper divs, so menu links and direct URLs jump to the correct card.
 
 ## Page Transition Wipe
 
@@ -31,7 +33,7 @@ Menu links use BEM class `hamburger-menu__menu-link` and are styled in REM Regul
 
 ## Card Scroll Entrance
 
-Each card fades up into view as it enters the viewport, driven by GSAP ScrollTrigger. The entrance animation is coordinated by Orchestrator.tsx alongside the hero entrance and footer entrance.
+On desktop/tablet, the sticky card stack handles card transitions (scale-down, dim, border-radius reveal). On mobile, each card fades up into view as it enters the viewport, driven by StickyCardStack.tsx. The Orchestrator's original `.cards-section__card` entrance animation is now inert (those elements no longer exist) — StickyCardStack handles its own scroll animations.
 
 ## Image Layer Cycling
 

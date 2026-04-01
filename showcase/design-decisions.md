@@ -51,8 +51,9 @@ Full neutral scale from #FFFFFF to #25272C for secondary text, borders, navigati
 
 The presentation is designed to reward exploration without requiring it. Every section is fully readable without interaction — card entrance animations and layer cycling add delight on top of functional content.
 
-- **Desktop/Tablet**: Smooth scroll via Lenis. Cards fade up on scroll entrance via GSAP ScrollTrigger. Hover triggers image layer cycling.
-- **Mobile**: Native scroll for reliability. Cards fade up on scroll entrance. Touch triggers image cycling.
+- **Desktop/Tablet**: Smooth scroll via Lenis. Cards pin and stack with scale-down/dim exit transitions via GSAP ScrollTrigger. Hover triggers image layer cycling.
+- **Mobile**: Native scroll for reliability. Cards fade up on scroll entrance (opacity + y translate). Touch triggers image cycling.
+- **Reduced motion**: Simple vertical stack, no animation, no sticky positioning.
 - **Transitions**: Full-screen wipe for anchor navigation creates a cinematic section-to-section flow.
 
 ## Card system
@@ -63,7 +64,7 @@ Three card variants serve different content types, all using a white (neutral-50
 - **Type B** (CardB): Text-only narrative blocks. Used for Persona, IRR (assumptions), IRR (returns/waterfall), and Exit strategy.
 - **Type C** (CardC): Content card with individual image slots inside grid items. Used for Product and the two Risk factor cards.
 
-Cards are positioned in a static vertical layout. All card positioning and entrance animation is handled by Orchestrator.tsx via GSAP ScrollTrigger fade-up triggers — no dedicated gallery component, no 3D transforms, no stacked deck. Fixed heights (420/480/540px) with overflow-y: auto and hidden scrollbar keep the card frame consistent while allowing content to scroll internally.
+On desktop/tablet, cards use a scroll-driven sticky stack: each card pins to the viewport while the user scrolls, then scales down (0.96), dims (opacity 0.4), and gains border-radius (16px) as the next card slides up from below. On mobile, cards stack vertically with fade-up reveals. The StickyCardStack component handles all card scroll animation independently from the Orchestrator. Fixed heights (420/480/540px) with overflow-y: auto and hidden scrollbar keep the card frame consistent while allowing content to scroll internally.
 
 ## Spacing
 

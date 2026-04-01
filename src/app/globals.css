@@ -493,6 +493,42 @@ a { color: inherit; text-decoration: none; font-size: inherit; font-weight: inhe
   margin-top: 16px;
 }
 
+/* ── Sticky Card Stack ── */
+.sticky-card-slot {
+  position: relative;
+}
+
+.sticky-card-pin-target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.sticky-card-container {
+  width: 100%;
+  max-width: 56rem;
+  padding: 64px 40px;
+}
+
+@media (max-width: 1024px) {
+  .sticky-card-container {
+    max-width: 48rem;
+    padding: 56px 32px;
+  }
+}
+
+@media (max-width: 744px) {
+  .sticky-card-pin-target {
+    min-height: auto;
+  }
+  .sticky-card-container {
+    max-width: 100%;
+    padding: 48px 24px;
+  }
+}
+
 /* ============================================================
    4. FOOTER
    ============================================================ */

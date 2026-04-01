@@ -39,18 +39,26 @@ export default function Orchestrator() {
        Lenis smooth scroll
        ============================================================ */
     let lenis: Lenis | null = null;
+    let tickerCallback: ((time: number) => void) | null = null;
     const mql = window.matchMedia("(max-width: 744px)");
 
     function initLenis() {
       if (lenis) return;
       lenis = new Lenis({ touchMultiplier: 0.2 });
       lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis!.raf(time * 1000));
+      tickerCallback = (time: number) => {
+        if (lenis) lenis.raf(time * 1000);
+      };
+      gsap.ticker.add(tickerCallback);
       gsap.ticker.lagSmoothing(0);
     }
 
     function destroyLenis() {
       if (!lenis) return;
+      if (tickerCallback) {
+        gsap.ticker.remove(tickerCallback);
+        tickerCallback = null;
+      }
       lenis.destroy();
       lenis = null;
     }
