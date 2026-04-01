@@ -49,21 +49,21 @@ Full neutral scale from #FFFFFF to #25272C for secondary text, borders, navigati
 
 ## Interaction philosophy
 
-The presentation is designed to reward exploration without requiring it. Every section is fully readable without interaction — the 3D tilt, gyroscope, and layer cycling add delight on top of functional content.
+The presentation is designed to reward exploration without requiring it. Every section is fully readable without interaction — card entrance animations and layer cycling add delight on top of functional content.
 
-- **Desktop**: Mouse-driven 3D tilt (up to 10 degrees) with subtle scale-up on hover. Smooth scroll via Lenis. Hover triggers image layer cycling.
-- **Mobile**: Gyroscope tilt on capable devices, touch-drag tilt as fallback, ambient idle float as baseline. Touch triggers image cycling. Native scroll for reliability.
+- **Desktop/Tablet**: Smooth scroll via Lenis. Cards fade up on scroll entrance via GSAP ScrollTrigger. Hover triggers image layer cycling.
+- **Mobile**: Native scroll for reliability. Cards fade up on scroll entrance. Touch triggers image cycling.
 - **Transitions**: Full-screen wipe for anchor navigation creates a cinematic section-to-section flow.
 
 ## Card system
 
-Three tilt card variants serve different content types, all using a white (neutral-50) background with a neutral-200 border:
+Three card variants serve different content types, all using a white (neutral-50) background with a neutral-200 border:
 
-- **Type A** (TiltCardA): Data-heavy layouts with labeled rows, dot leaders, and value columns. Used for IRR assumptions and waterfall distribution. Full-bleed background image with gradient overlay, content floats on top.
-- **Type B** (TiltCardB): Text-only narrative blocks. Used for persona and exit strategy.
-- **Type C** (TiltCardC): Content card with individual image slots inside grid items. Used for product items and risk factors.
+- **Type A** (CardA): Data-heavy layouts with labeled rows, dot leaders, and value columns. Defined but currently unused in the live layout.
+- **Type B** (CardB): Text-only narrative blocks. Used for Persona, IRR (assumptions), IRR (returns/waterfall), and Exit strategy.
+- **Type C** (CardC): Content card with individual image slots inside grid items. Used for Product and the two Risk factor cards.
 
-All three share the same 3D transform pipeline (perspective, rotation, scale) and entrance animation behavior.
+Cards are positioned in a static vertical layout. All card positioning and entrance animation is handled by Orchestrator.tsx via GSAP ScrollTrigger fade-up triggers — no dedicated gallery component, no 3D transforms, no stacked deck. Fixed heights (420/480/540px) with overflow-y: auto and hidden scrollbar keep the card frame consistent while allowing content to scroll internally.
 
 ## Spacing
 
@@ -72,9 +72,9 @@ Consistent padding system across breakpoints:
 - Tablet: 1.25rem page padding, 2.5rem card padding, 36px section gaps
 - Mobile: 0.75rem page padding, 1.5rem card padding, 32px section gaps
 
-Section gaps are uniform between all major sections (hero→tilt cards, tilt cards→footer) and between the nav and hero content. First and last tilt cards have zero edge padding to ensure the margin-based gaps are visually accurate.
+Section gaps are uniform between all major sections (hero→cards, cards→footer) and between the nav and hero content. First and last cards have zero edge padding to ensure the margin-based gaps are visually accurate.
 
-The hero section sizes to its content (no min-height) with top padding equal to nav height + gap. Cards use `min-height: 100vh` on desktop, `50vh` on tablet, and auto on mobile for natural content height. Card container scales from 85% width (max 56rem) on desktop to 85% (max 48rem) on tablet to 100% on mobile. Border-radius scales from radius-xl (1.5rem) to radius-l (1rem) to radius-m (0.75rem).
+The hero section sizes to its content (no min-height) with top padding equal to nav height plus gap (64px desktop / 56px tablet / 48px mobile). Content is centered via `margin: 0 auto` on `.hero__content`. Cards use fixed heights (420px mobile / 480px tablet / 540px desktop). Card inner padding scales from 24px to 32px across breakpoints; outer section padding scales from 48px 24px (mobile) to 64px 40px (desktop). Card container scales from 85% width (max 56rem) on desktop to 85% (max 48rem) on tablet to 100% on mobile. Border-radius scales from radius-xl (1.5rem) to radius-l (1rem) to radius-m (0.75rem).
 
 The footer is a compact bar (48/56/64px min-height across breakpoints) with the light page background (`--bg`), containing an address line and copyright.
 

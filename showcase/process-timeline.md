@@ -17,19 +17,19 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 - React Compiler enabled for automatic optimization.
 - src/ directory to separate app code from config.
 
-## Phase 2: Tilt Card Presentation System (March 30, 2026)
+## Phase 2: Card Presentation System (March 30, 2026)
 
-**What happened:** Built the full single-page presentation with hero, six tilt card sections (persona, product, IRR assumptions, IRR returns, risk factors x2, exit strategy), footer, and navigation. Implemented the 3D tilt interaction system for desktop (mouse-driven) and mobile (gyroscope, touch-drag, idle float). Added GSAP animations, ScrollTrigger entrances, Lenis smooth scroll, page transition wipe, and animated menu overlay.
+**What happened:** Built the full single-page presentation with hero, seven cards across six content sections (persona, product, IRR assumptions, IRR returns, risk factors split into two cards, exit strategy), footer, and navigation. Added GSAP animations, ScrollTrigger scroll-entrance fade-ups, Lenis smooth scroll, page transition wipe, and animated menu overlay. Cards rendered in a static vertical layout.
 
 **Key commits:**
-- Add tilt-card presentation system with 3D interactions
+- Add card presentation system with interactions
 - Save current work in progress
 
 **Decisions made:**
 - Single Orchestrator component for all animation and interaction logic.
-- Three tilt card variants (A, B, C) for different content types.
+- Three card variants (A, B, C) for different content types; CardB and CardC used in production.
+- Static card layout — no scroll-driven gallery component.
 - Lenis disabled on mobile for native scroll reliability.
-- Gyroscope as primary mobile interaction with two fallback strategies.
 
 ## Phase 3: Responsive Polish (March 30–31, 2026)
 
@@ -67,7 +67,7 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 
 ## Phase 7: Typography System & Hero Redesign (March 31, 2026)
 
-**What happened:** Restructured hero section from two paragraphs into a heading/subheading/body hierarchy with a prominent h1 (REM Semibold). Added REM as a second typeface for all headings. Built a full typography token system with CSS custom properties per heading level (h1–h4) per breakpoint. Applied the system across all sections: tilt card titles, group labels, risk labels, product items, and body text. Fixed semantic heading hierarchy (h4→h3, h5→h4). Converted footer to body-only typography (no headings). Set left-aligned text as default. Aligned breakpoints to iOS HIG (744px mobile, 1024px tablet). Cleaned up dead code and stale references.
+**What happened:** Restructured hero section from two paragraphs into a heading/subheading/body hierarchy with a prominent h1 (REM Semibold). Added REM as a second typeface for all headings. Built a full typography token system with CSS custom properties per heading level (h1–h4) per breakpoint. Applied the system across all sections: card titles, group labels, risk labels, product items, and body text. Fixed semantic heading hierarchy (h4→h3, h5→h4). Converted footer to body-only typography (no headings). Set left-aligned text as default. Aligned breakpoints to iOS HIG (744px mobile, 1024px tablet). Cleaned up dead code and stale references.
 
 **Key commits:**
 - Restructure hero into heading, subheading, and body
@@ -95,14 +95,14 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 
 ## Phase 9: Layout Audit & Cleanup (March 31, 2026)
 
-**What happened:** Comprehensive layout audit across all breakpoints. Made all spacing, sizing, and typography values scale distinctly per breakpoint (no more identical mobile/tablet values). Nav height set to 48px on mobile. Hero gap and max-width now scale. Tilt cards section background changed to base background color. All card variants unified to white fill (neutral-50) with neutral-200 border — collapsed duplicate dark/light selectors. Card container max-width and border-radius scale per breakpoint. Typography tokens updated: section body desktop bumped to 1.563rem, component body and footer body tablet bumped to 1.25rem, sub-component h4 tablet bumped to 1.25rem. Highlight box radius/padding, split layout gaps, product grid gaps, and footer padding all scale. Risk item borders changed to neutral-200. Hamburger menu links given 1px neutral-200 divider lines. Removed dead code: split layout CSS, content-grid CSS, image-placeholder, text-mask, unused tokens (--image-bg, --image-bg-dark). CSS restructured into 4 top-level sections matching page structure.
+**What happened:** Comprehensive layout audit across all breakpoints. Made all spacing, sizing, and typography values scale distinctly per breakpoint (no more identical mobile/tablet values). Nav height set to 48px on mobile. Hero gap and max-width now scale. Cards section background changed to base background color. All card variants unified to white fill (neutral-50) with neutral-200 border — collapsed duplicate dark/light selectors. Card container max-width and border-radius scale per breakpoint. Typography tokens updated: section body desktop bumped to 1.563rem, component body and footer body tablet bumped to 1.25rem, sub-component h4 tablet bumped to 1.25rem. Highlight box radius/padding, split layout gaps, product grid gaps, and footer padding all scale. Risk item borders changed to neutral-200. Hamburger menu links given 1px neutral-200 divider lines. Removed dead code: split layout CSS, content-grid CSS, image-placeholder, text-mask, unused tokens (--image-bg, --image-bg-dark). CSS restructured into 4 top-level sections matching page structure.
 
 **Key commits:**
 - Layout: responsive scaling, dead code cleanup, CSS audit
 
 **Decisions made:**
 - All cards white with neutral-200 stroke — eliminates dark/light variant complexity.
-- CSS organized by page sections (Navigation, Hero, Tilt Cards, Footer) rather than by component type.
+- CSS organized by page sections (Navigation, Hero, Cards, Footer) rather than by component type.
 - Every adjacent breakpoint pair must have distinct values — no same-value mobile/tablet or tablet/desktop pairs in typography tokens.
 - Dead CSS removed rather than kept for potential future use.
 
@@ -111,7 +111,7 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 | Phase | Dates | Focus | Commits |
 |-------|-------|-------|---------|
 | 1. Project Setup | Mar 30 | Scaffolding and configuration | 1 |
-| 2. Tilt Card System | Mar 30 | Full presentation build | 2 |
+| 2. Card System | Mar 30 | Full presentation build | 2 |
 | 3. Responsive Polish | Mar 30–31 | Breakpoint tuning | 2 |
 | 4. Cleanup | Mar 31 | Remove splash screen | 1 |
 | 5. Mobile Nav Fix | Mar 31 | Safari compatibility, real logo | 1 |

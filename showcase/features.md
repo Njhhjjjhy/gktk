@@ -3,17 +3,19 @@ Major features described for portfolio presentation.
 
 ---
 
-## 3D Tilt Card System
+## Card System
 
-Three card variants (Type A, B, C) rendered as full-viewport interactive elements. Each card responds to mouse movement on desktop with up to 10 degrees of subtle tilt and 1.02x scale on hover. Cards use `transformPerspective: 800` for depth. On mobile, a three-priority interaction system activates: gyroscope tilt via DeviceOrientation (with iOS permission request), touch-drag tilt as fallback, and ambient idle float animation when not touching.
+Three card variants (Type A, B, C) defined in Cards.tsx. CardB and CardC are used in the live layout; CardA is defined but currently unused. All cards use white (neutral-50) backgrounds with neutral-200 borders. Fixed heights of 420px (mobile), 480px (tablet), and 540px (desktop) with inner padding scaling from 24px to 32px across breakpoints. Content flows from the top; overflow is scrollable within the card with a hidden scrollbar.
 
-## Mobile Gyroscope Interaction
+Seven cards in total: Persona, Product, IRR (assumptions), IRR (returns and waterfall), Risk factors 1–3, Risk factors 4–6, and Exit strategy.
 
-On iOS, the system requests DeviceOrientation permission on first touch, then maps phone tilt to card rotation. On Android, it silently tests for gyroscope events. If neither is available, touch-drag provides equivalent tilt control. Each strategy seamlessly hands off to the next.
+## Static Card Layout
 
-## Scroll-Triggered Card Entrances
+The cards section renders 7 cards in a static vertical layout — no scroll-driven gallery, no 3D transforms, no stacked deck. Cards stack in document order and enter the viewport with a fade-up entrance animation triggered by GSAP ScrollTrigger as the user scrolls down the page.
 
-Each tilt card section fades up from 60px below when scrolling into the 75% viewport threshold, using GSAP ScrollTrigger with `once: true` for a single cinematic reveal.
+Cards have fixed heights (420px mobile / 480px tablet / 540px desktop) with `overflow-y: auto` and a hidden scrollbar, allowing content to scroll within the card if it exceeds the card height. Content flows from the top of each card.
+
+Navigation anchor IDs (persona, product, irr, risk, exit) are placed directly on the card elements, so menu links and direct URLs jump to the correct card.
 
 ## Page Transition Wipe
 
@@ -26,6 +28,10 @@ A full-screen overlay menu (`.hamburger-menu`) with backdrop blur. Five numbered
 The menu button is responsive: on mobile, it shows SVG hamburger/close icons (24x24) toggled via CSS and `aria-expanded`; on tablet and above, the icons are hidden and a text label (`navigation__menu-label`) displays "Menu" or "Close", toggled via JS in Orchestrator.tsx. The label uses REM Semibold at 1.25rem and turns amber on hover.
 
 Menu links use BEM class `hamburger-menu__menu-link` and are styled in REM Regular (weight 400) neutral-700 by default. Each link has a 1px neutral-200 divider line below it. Clicking a link sets an `.active` class via JS, which applies REM Semibold (weight 600) neutral-900. Hovering underlines the link text. Font size scales using `--component-heading` design tokens across breakpoints. Spacing (padding-top, gap) scales with `--nav-height` CSS custom properties per breakpoint.
+
+## Card Scroll Entrance
+
+Each card fades up into view as it enters the viewport, driven by GSAP ScrollTrigger. The entrance animation is coordinated by Orchestrator.tsx alongside the hero entrance and footer entrance.
 
 ## Image Layer Cycling
 
