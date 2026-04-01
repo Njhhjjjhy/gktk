@@ -51,8 +51,8 @@ Full neutral scale from #FFFFFF to #25272C for secondary text, borders, navigati
 
 The presentation is designed to reward exploration without requiring it. Every section is fully readable without interaction — card entrance animations and layer cycling add delight on top of functional content.
 
-- **Desktop/Tablet**: Smooth scroll via Lenis. Cards pin and stack with scale-down/dim exit transitions via GSAP ScrollTrigger. Hover triggers image layer cycling.
-- **Mobile**: Native scroll for reliability. Cards fade up on scroll entrance (opacity + y translate). Touch triggers image cycling.
+- **Desktop/Tablet**: Smooth scroll via Lenis. Cards stack in a pinned grid with one of five animation proposals (Peel Away, Zoom Through, Horizontal Slide, Flip, Stack & Shrink) driven by GSAP ScrollTrigger. An amber (#FBB931) background color transition activates when entering the cards section. Hover triggers image layer cycling.
+- **Mobile**: Native scroll for reliability. Cards use the same stacked animation system. Touch triggers image cycling.
 - **Reduced motion**: Simple vertical stack, no animation, no sticky positioning.
 - **Transitions**: Full-screen wipe for anchor navigation creates a cinematic section-to-section flow.
 
@@ -64,7 +64,7 @@ Three card variants serve different content types, all using a white (neutral-50
 - **Type B** (CardB): Text-only narrative blocks. Used for Persona, IRR (assumptions), IRR (returns/waterfall), and Exit strategy.
 - **Type C** (CardC): Content card with individual image slots inside grid items. Used for Product and the two Risk factor cards.
 
-On desktop/tablet, cards use a scroll-driven sticky stack: each card pins to the viewport while the user scrolls, then scales down (0.96), dims (opacity 0.4), and gains border-radius (16px) as the next card slides up from below. On mobile, cards stack vertically with fade-up reveals. The StickyCardStack component handles all card scroll animation independently from the Orchestrator. Fixed heights (420/480/540px) with overflow-y: auto and hidden scrollbar keep the card frame consistent while allowing content to scroll internally.
+On desktop/tablet, cards are layered in a single CSS grid cell and pinned via GSAP ScrollTrigger. Five animation proposals are available — Peel Away, Zoom Through, Horizontal Slide, Flip, and Stack & Shrink — switchable via a dev-only floating panel. The StickyCardStack component handles all card scroll animation independently from the Orchestrator. Card height uses a CSS custom property (`--card-height` with a 540px default) instead of fixed breakpoint-based height overrides, with overflow-y: auto and hidden scrollbar keeping the card frame consistent while allowing content to scroll internally.
 
 ## Spacing
 
@@ -75,7 +75,7 @@ Consistent padding system across breakpoints:
 
 Section gaps are uniform between all major sections (hero→cards, cards→footer) and between the nav and hero content. First and last cards have zero edge padding to ensure the margin-based gaps are visually accurate.
 
-The hero section sizes to its content (no min-height) with top padding equal to nav height plus gap (64px desktop / 56px tablet / 48px mobile). Content is centered via `margin: 0 auto` on `.hero__content`. Cards use fixed heights (420px mobile / 480px tablet / 540px desktop). Card inner padding scales from 24px to 32px across breakpoints; outer section padding scales from 48px 24px (mobile) to 64px 40px (desktop). Card container scales from 85% width (max 56rem) on desktop to 85% (max 48rem) on tablet to 100% on mobile. Border-radius scales from radius-xl (1.5rem) to radius-l (1rem) to radius-m (0.75rem).
+The hero section sizes to its content (no min-height) with top padding equal to nav height plus gap (64px desktop / 56px tablet / 48px mobile). Content is centered via `margin: 0 auto` on `.hero__content`. Card height is set via the `--card-height` CSS custom property (default 540px), replacing the previous fixed breakpoint-based overrides. Card inner padding scales from 24px to 32px across breakpoints; outer section padding scales from 48px 24px (mobile) to 64px 40px (desktop). Card container scales from 85% width (max 56rem) on desktop to 85% (max 48rem) on tablet to 100% on mobile. Border-radius scales from radius-xl (1.5rem) to radius-l (1rem) to radius-m (0.75rem).
 
 The footer is a compact bar (48/56/64px min-height across breakpoints) with the light page background (`--bg`), containing an address line and copyright.
 

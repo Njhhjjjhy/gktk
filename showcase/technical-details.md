@@ -34,7 +34,7 @@ gktk/
 │       │                        #   hamburger menu, image cycling, card scroll entrance, footer entrance,
 │       │                        #   active menu link tracking
 │       ├── Cards.tsx            # CardA (unused), CardB, CardC + CyclingLayers
-│       ├── StickyCardStack.tsx  # Scroll-driven sticky card stack with desktop/mobile/reduced-motion modes
+│       ├── StickyCardStack.tsx  # Stacked card animation with 5 proposal variants, amber bg transition, dev switcher
 │       └── QALoader.tsx        # Development QA utility
 ├── public/
 │   └── logobase.svg            # Brand logo source (+ other static assets)
@@ -46,9 +46,9 @@ gktk/
 
 ### Key architectural decisions
 
-- **Two client components with clear separation**: Orchestrator.tsx handles global runtime behavior (noise texture, Lenis smooth scroll, anchor wipe transition, hero entrance, hamburger menu, image layer cycling, footer entrance, active menu link tracking). StickyCardStack.tsx owns all card scroll animation — sticky pinning, scale/dim/radius transitions on desktop, fade-up reveals on mobile, and reduced-motion fallback.
+- **Two client components with clear separation**: Orchestrator.tsx handles global runtime behavior (noise texture, Lenis smooth scroll, anchor wipe transition, hero entrance, hamburger menu, image layer cycling, footer entrance, active menu link tracking). StickyCardStack.tsx owns all card scroll animation — five proposal animation variants, amber background transition, dev-only switcher UI, and reduced-motion fallback.
 - **Server-rendered markup, client-side motion**: page.tsx is a server component that renders all HTML. Card content is passed as a `cards` array prop to the StickyCardStack client component. Orchestrator attaches non-card animations after hydration.
-- **Scroll-driven sticky card stack**: On desktop/tablet, each card pins via `position: sticky` with GSAP ScrollTrigger driving scale-down, opacity dim, and border-radius reveal as the user scrolls past. On mobile, cards use simple fade-up reveals. Reduced motion disables all animation. Lenis native scroll (no wrapper/content override) ensures `position: sticky` works correctly.
+- **Scroll-driven stacked card animation**: On desktop/tablet, all cards are layered in a single CSS grid cell and pinned via GSAP ScrollTrigger. Five animation proposals (Peel Away, Zoom Through, Horizontal Slide, Flip, Stack & Shrink) are selectable via a dev-only floating switcher. An amber (#FBB931) background color transition activates when the scroll trigger enters the cards section. Reduced motion disables all animation and renders a plain vertical stack.
 - **CSS-only responsive layout**: No JavaScript-based responsive logic for layout. Media queries handle all breakpoint changes. Only Lenis initialization/destruction responds to breakpoint changes via `matchMedia`.
 - **Strict color palette with aliases**: All colors consolidated into four categories (Brand, Interaction, Base, Neutral). Semantic aliases (`--bg`, `--fg`, `--accent`, etc.) point to palette tokens rather than hardcoded hex values, ensuring no off-palette colors exist in the stylesheet.
 - **CSS organized by page sections**: Stylesheet structured into top-level sections (Navigation, Hero, Cards, Footer) matching the page structure, with card sub-layouts (product grid, data rows, risk items) nested under the Cards section.
