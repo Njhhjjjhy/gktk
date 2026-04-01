@@ -5,19 +5,29 @@ Major features described for portfolio presentation.
 
 ## Card System
 
-Three card variants (Type A, B, C) defined in Cards.tsx. CardB and CardC are used in the live layout; CardA is defined but currently unused. All cards use white (neutral-50) backgrounds with neutral-200 borders. Fixed heights of 420px (mobile), 480px (tablet), and 540px (desktop) with inner padding scaling from 24px to 32px across breakpoints. Content flows from the top; overflow is scrollable within the card with a hidden scrollbar.
+Three card variants (Type A, B, C) defined in Cards.tsx. CardB and CardC are used in the live layout; CardA is defined but currently unused. All cards use white (neutral-50) backgrounds with neutral-200 borders. Card height is controlled by a CSS custom property `--card-height` with a default of 540px (`height: var(--card-height, 540px)`), replacing the previous fixed breakpoint-based height overrides. Inner padding scales from 24px to 32px across breakpoints. Content flows from the top; overflow is scrollable within the card with a hidden scrollbar.
 
 Seven cards in total: Persona, Product, IRR (assumptions), IRR (returns and waterfall), Risk factors 1–3, Risk factors 4–6, and Exit strategy.
 
 ## Sticky Card Stack
 
-On desktop and tablet (>744px), the cards section uses a scroll-driven sticky card stack. Each card pins to the viewport via `position: sticky`. As the user scrolls, the current card scales down (1 → 0.96), dims (opacity 1 → 0.4), and gains border-radius (0 → 16px), while the next card slides up naturally from below. GSAP ScrollTrigger with `scrub: 0.3` drives the exit animation. Each card slot has `min-height: 150vh` for scroll room; the last card has no sticky behavior. The StickyCardStack component (`StickyCardStack.tsx`) handles all scroll animation independently from the Orchestrator.
+On desktop and tablet, the cards section uses a full-viewport stacked card animation. All cards are layered in a single grid cell and pinned to the viewport via GSAP ScrollTrigger. The wrapper height is set to `cards.length * 100vh` to provide scroll room, and the `slides-layout` grid is pinned while a scrubbed GSAP timeline drives the transition animation. ScrollTrigger with `scrub: 1` drives the animation.
 
-On mobile (≤744px), cards stack vertically with scroll-triggered fade-up reveals (`opacity: 0, y: 40` → `opacity: 1, y: 0`) at 85% viewport entry, duration 0.6s, `power3.out` ease, triggering once.
+Five animation proposal variants are available, switchable via a dev-only floating switcher (visible only in `NODE_ENV === "development"`):
 
-With reduced motion preferences, cards render in a simple vertical stack with no animation and no sticky positioning.
+1. **Peel Away** — Top card peels off to the left with rotation, revealing the next card underneath.
+2. **Zoom Through** — Current card zooms in and fades out while the next card scales up from behind.
+3. **Horizontal Slide** — Cards slide left like a horizontal carousel.
+4. **Flip** — Cards flip on the Y-axis with a 3D rotation (1200px perspective) to reveal the next.
+5. **Stack & Shrink** — Current card shrinks and drops down while the next card rises into place.
 
-Navigation anchor IDs (persona, product, irr, risk, exit) are placed on the `.sticky-card-slot` wrapper divs, so menu links and direct URLs jump to the correct card.
+The floating switcher is a fixed-position dark panel at the bottom center of the viewport with numbered buttons (1-5). The active proposal is highlighted in amber (#FBB931). Switching proposals kills all ScrollTriggers, bumps a mount key to force a clean DOM remount, and scrolls back to the cards section start.
+
+An amber (#FBB931) background color transition activates when the scroll trigger enters the cards section (`onEnter`), and reverts to the page background (#F9F9F9) when leaving (`onLeaveBack`, `onLeave`). The transition applies to both the wrapper div and its parent section element.
+
+With reduced motion preferences, cards render in a simple vertical stack with no animation and no pinning.
+
+Navigation anchor IDs (persona, product, irr, risk, exit) are placed on the `.stacked-slide` wrapper divs, so menu links and direct URLs jump to the correct card.
 
 ## Page Transition Wipe
 
@@ -33,7 +43,7 @@ Menu links use BEM class `hamburger-menu__menu-link` and are styled in REM Regul
 
 ## Card Scroll Entrance
 
-On desktop/tablet, the sticky card stack handles card transitions (scale-down, dim, border-radius reveal). On mobile, each card fades up into view as it enters the viewport, driven by StickyCardStack.tsx. The Orchestrator's original `.cards-section__card` entrance animation is now inert (those elements no longer exist) — StickyCardStack handles its own scroll animations.
+All card scroll animation is handled by StickyCardStack.tsx. On desktop/tablet, cards are stacked in a pinned grid with one of five selectable animation proposals driving the transition between cards. The Orchestrator's original `.cards-section__card` entrance animation is now inert (those elements no longer exist) — StickyCardStack handles its own scroll animations.
 
 ## Image Layer Cycling
 

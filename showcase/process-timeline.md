@@ -3,7 +3,7 @@ Development timeline reconstructed from git history.
 
 ---
 
-Reconstructed from git history (11 commits, March 30–31, 2026).
+Reconstructed from git history (12 commits, March 30 – April 1, 2026).
 
 ## Phase 1: Project Setup (March 30, 2026)
 
@@ -126,6 +126,26 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 - Three rendering modes: desktop sticky stack, mobile fade-up, reduced motion static.
 - Last card in the stack has no sticky behavior (just a normal block).
 
+## Phase 12: Animation Proposals & Styling (April 1, 2026)
+
+**What happened:** Replaced the single sticky card animation with five proposal variants, each a self-contained GSAP timeline: Peel Away (card peels off to the left with rotation), Zoom Through (current card zooms in and fades, next emerges from behind), Horizontal Slide (cards slide left like a carousel), Flip (Y-axis 3D rotation with 1200px perspective), and Stack & Shrink (current card shrinks and drops, next rises). Added a dev-only floating switcher panel (visible only in development mode) for comparing proposals — a fixed dark panel at bottom center with numbered buttons, the active proposal highlighted in amber. Switching proposals kills all ScrollTriggers, force-remounts the DOM via a key bump, and scrolls back to the cards section.
+
+Added an amber (#FBB931) background color transition on the cards section: `onEnter` transitions both the wrapper and parent section to amber, `onLeaveBack` and `onLeave` revert to the page background (#F9F9F9).
+
+Replaced fixed card height breakpoints (420/480/540px) with a single CSS custom property: `height: var(--card-height, 540px)`. Removed the per-breakpoint height overrides from the tablet and mobile media queries.
+
+Fixed 3D perspective text distortion by resetting `rotateX` on active cards.
+
+**Key commits:**
+- Animation proposals, amber background transition, card height custom property, rotateX fix
+
+**Decisions made:**
+- Five distinct animation proposals for client review rather than iterating on a single approach.
+- Dev-only switcher ensures proposal UI never ships to production (`process.env.NODE_ENV === "development"` guard).
+- CSS custom property for card height allows flexible overrides without breakpoint-specific rules.
+- Amber background transition provides a clear visual signal when entering/leaving the cards section, using the brand color.
+- Full DOM remount on proposal switch (via React key) ensures clean GSAP state rather than trying to reverse/cleanup inline styles.
+
 ---
 
 | Phase | Dates | Focus | Commits |
@@ -141,3 +161,4 @@ Reconstructed from git history (11 commits, March 30–31, 2026).
 | 9. Layout Audit | Mar 31 | Responsive scaling, dead code cleanup, CSS restructure | 1 |
 | 10. Cards Redesign | Mar 31 | Rename tilt to cards, unify sizing, update content | 1 |
 | 11. Sticky Card Stack | Apr 1 | Scroll-driven sticky card animation | 1 |
+| 12. Animation Proposals | Apr 1 | 5 animation variants, amber bg transition, card height custom prop | 1 |

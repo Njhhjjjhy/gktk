@@ -21,13 +21,13 @@ Traditional investor pitch decks are static PDFs or slide shows that fail to con
 
 ## The solution
 
-A web-based pitch experience where each section — persona, product, financials, risk factors, exit strategy — is presented on seven cards in a static vertical layout. Cards fade up into view on scroll via GSAP ScrollTrigger. Page transition wipes and image layer cycling add cinematic feel that elevates the content.
+A web-based pitch experience where each section — persona, product, financials, risk factors, exit strategy — is presented on seven cards in a scroll-driven stacked animation. Cards are layered in a pinned viewport and transition between each other using one of five animation proposals (Peel Away, Zoom Through, Horizontal Slide, Flip, Stack & Shrink). An amber background color transition signals entry into the cards section. Page transition wipes and image layer cycling add cinematic feel that elevates the content.
 
 ## The approach
 
 I chose Next.js 16 with the App Router for server-side rendering and optimized delivery. The entire interaction layer is built with GSAP and ScrollTrigger — entrance animations, menu transitions, and page wipes. Lenis provides buttery smooth scroll on desktop while being disabled on mobile for native touch behavior.
 
-The card system supports three variants (Type A for data tables, Type B for text-only narrative, Type C for grids and risk items), rendered in a static vertical layout. All animation — hero entrance, card fade-up on scroll, footer entrance — is coordinated by a single Orchestrator client component. Image layer cycling on hover/touch adds visual depth to product and risk cards.
+The card system supports three variants (Type A for data tables, Type B for text-only narrative, Type C for grids and risk items), rendered in a scroll-driven stacked animation with five proposal variants. Card height uses a CSS custom property for flexible sizing. All animation — hero entrance, card stack transitions, amber background shift, footer entrance — is split between two client components: Orchestrator for global behavior and StickyCardStack for card-specific scroll animation. Image layer cycling on hover/touch adds visual depth to product and risk cards.
 
 Typography uses two typefaces loaded via next/font: REM Semibold for headings and Noto Sans JP for body text, with a major-third (1.25) type scale from 0.8rem to 5.96rem. CSS custom property tokens define sizes for each heading level (h1–h4) at three iOS HIG-aligned breakpoints (mobile ≤744px, tablet 745–1024px, desktop ≥1025px).
 
@@ -54,7 +54,7 @@ Full design and development — from visual concept and interaction design throu
 
 ## Duration
 
-March 30–31, 2026 — rapid build over 2 days.
+March 30 – April 1, 2026 — rapid build over 3 days.
 
 ## Status
 
