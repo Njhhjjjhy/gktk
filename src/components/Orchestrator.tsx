@@ -8,303 +8,6 @@ import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ============================================================
-   Mobile & Tablet Tilt Module
-   3 strategies in priority order:
-   1. Gyroscope (DeviceOrientation) — iOS primary
-   2. Touch-drag tilt — fallback
-   3. Idle float — ambient motion when not touching
-   ============================================================ */
-function initMobileTilt(containerEls: HTMLElement[]) {
-  const isTouchDevice =
-    "ontouchstart" in window || navigator.maxTouchPoints > 0;
-  if (!isTouchDevice) return null;
-
-  const MAX_TILT = 8;
-  const TILT_DURATION = 0.5;
-  const TILT_EASE = "power2.out";
-  const SCALE_ACTIVE = 1.02;
-  const RESET_DURATION = 0.6;
-
-  let gyroPermission: "granted" | "denied" | "unknown" | "unavailable" =
-    "unknown";
-  let activeCard: HTMLElement | null = null;
-
-  // --- STRATEGY 1: GYROSCOPE ---
-  let gyroBaseBeta: number | null = null;
-  let gyroBaseGamma: number | null = null;
-  let gyroActive = false;
-
-  function handleOrientation(event: DeviceOrientationEvent) {
-    if (!gyroActive || !activeCard) return;
-
-    const beta = event.beta;
-    const gamma = event.gamma;
-    if (beta === null || gamma === null) return;
-
-    if (gyroBaseBeta === null) {
-      gyroBaseBeta = beta;
-      gyroBaseGamma = gamma;
-    }
-
-    const deltaBeta = Math.max(
-      -MAX_TILT,
-      Math.min(MAX_TILT, beta - gyroBaseBeta)
-    );
-    const deltaGamma = Math.max(
-      -MAX_TILT,
-      Math.min(MAX_TILT, gamma - (gyroBaseGamma ?? 0))
-    );
-
-    gsap.to(activeCard, {
-      rotationX: -deltaBeta,
-      rotationY: deltaGamma,
-      duration: TILT_DURATION,
-      ease: TILT_EASE,
-      overwrite: "auto",
-    });
-  }
-
-  async function requestGyroPermission(): Promise<boolean> {
-    if (
-      typeof DeviceOrientationEvent === "undefined" ||
-      DeviceOrientationEvent === null
-    ) {
-      gyroPermission = "unavailable";
-      return false;
-    }
-
-    // iOS 13+: explicit permission required
-    const DOE = DeviceOrientationEvent as typeof DeviceOrientationEvent & {
-      requestPermission?: () => Promise<"granted" | "denied">;
-    };
-
-    if (typeof DOE.requestPermission === "function") {
-      try {
-        const result = await DOE.requestPermission();
-        gyroPermission = result;
-        if (result === "granted") {
-          window.addEventListener("deviceorientation", handleOrientation, true);
-          return true;
-        }
-        return false;
-      } catch {
-        gyroPermission = "denied";
-        return false;
-      }
-    }
-
-    // Android / older iOS: test if events fire
-    return new Promise((resolve) => {
-      let fired = false;
-      function testHandler(e: DeviceOrientationEvent) {
-        if (e.beta !== null) {
-          fired = true;
-          gyroPermission = "granted";
-          window.removeEventListener("deviceorientation", testHandler, true);
-          window.addEventListener("deviceorientation", handleOrientation, true);
-          resolve(true);
-        }
-      }
-      window.addEventListener("deviceorientation", testHandler, true);
-      setTimeout(() => {
-        if (!fired) {
-          window.removeEventListener("deviceorientation", testHandler, true);
-          gyroPermission = "unavailable";
-          resolve(false);
-        }
-      }, 1000);
-    });
-  }
-
-  // --- STRATEGY 2: TOUCH-DRAG TILT ---
-  function handleTouchTilt(card: HTMLElement, touchX: number, touchY: number) {
-    const rect = card.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const offsetX = (touchX - centerX) / (rect.width / 2);
-    const offsetY = (touchY - centerY) / (rect.height / 2);
-
-    gsap.to(card, {
-      rotationX: -offsetY * MAX_TILT,
-      rotationY: offsetX * MAX_TILT,
-      duration: TILT_DURATION,
-      ease: TILT_EASE,
-      overwrite: "auto",
-    });
-  }
-
-  // --- STRATEGY 3: IDLE FLOAT ---
-  const floatTimelines = new Map<HTMLElement, gsap.core.Timeline>();
-
-  function startFloat(card: HTMLElement) {
-    if (floatTimelines.has(card)) return;
-
-    const tl = gsap.timeline({ repeat: -1, yoyo: true });
-    tl.to(card, {
-      rotationX: gsap.utils.random(-3, 3),
-      rotationY: gsap.utils.random(-4, 4),
-      duration: gsap.utils.random(2.5, 4),
-      ease: "sine.inOut",
-    });
-    tl.to(card, {
-      rotationX: gsap.utils.random(-3, 3),
-      rotationY: gsap.utils.random(-4, 4),
-      duration: gsap.utils.random(2.5, 4),
-      ease: "sine.inOut",
-    });
-
-    floatTimelines.set(card, tl);
-  }
-
-  function stopFloat(card: HTMLElement) {
-    const tl = floatTimelines.get(card);
-    if (tl) {
-      tl.kill();
-      floatTimelines.delete(card);
-    }
-  }
-
-  // --- LAYER CYCLING ON TOUCH ---
-  const spriteTimelines = new Map<HTMLElement, gsap.core.Timeline>();
-
-  function initLayerCycling(card: HTMLElement) {
-    if (spriteTimelines.has(card)) return spriteTimelines.get(card)!;
-
-    const layerStacks = card.querySelectorAll("[data-cycling]");
-    if (layerStacks.length === 0) return null;
-
-    const tl = gsap.timeline({ paused: true });
-
-    layerStacks.forEach((stack) => {
-      const layers = stack.querySelectorAll(".tilt-card__layer");
-      if (layers.length < 2) return;
-
-      tl.to(
-        layers,
-        {
-          autoAlpha: 1,
-          repeat: -1,
-          duration: 0,
-          repeatDelay: 0.6,
-          stagger: { amount: 2 },
-          yoyo: true,
-        },
-        0
-      );
-    });
-
-    spriteTimelines.set(card, tl);
-    return tl;
-  }
-
-  // --- BIND TOUCH EVENTS ---
-  let gyroRequested = false;
-
-  containerEls.forEach((container) => {
-    const card = container.querySelector<HTMLElement>(".tilt-card");
-    if (!card) return;
-
-    // Start idle float
-    startFloat(card);
-
-    // TOUCHSTART
-    container.addEventListener(
-      "touchstart",
-      async (e) => {
-        const touch = e.touches[0];
-        activeCard = card;
-
-        stopFloat(card);
-
-        gsap.to(card, {
-          scale: SCALE_ACTIVE,
-          duration: 0.3,
-          ease: "back.out(1.7)",
-          overwrite: true,
-        });
-
-        const layerTL = initLayerCycling(card);
-        if (layerTL) layerTL.play();
-
-        if (!gyroRequested) {
-          gyroRequested = true;
-          const granted = await requestGyroPermission();
-          if (granted) {
-            gyroActive = true;
-            gyroBaseBeta = null;
-            gyroBaseGamma = null;
-          }
-        } else if (gyroPermission === "granted") {
-          gyroActive = true;
-          gyroBaseBeta = null;
-          gyroBaseGamma = null;
-        }
-
-        if (gyroPermission !== "granted") {
-          handleTouchTilt(card, touch.clientX, touch.clientY);
-        }
-      },
-      { passive: true }
-    );
-
-    // TOUCHMOVE
-    container.addEventListener(
-      "touchmove",
-      (e) => {
-        if (activeCard !== card) return;
-        const touch = e.touches[0];
-
-        if (gyroPermission !== "granted") {
-          handleTouchTilt(card, touch.clientX, touch.clientY);
-        }
-      },
-      { passive: true }
-    );
-
-    // TOUCHEND
-    function handleTouchEnd() {
-      if (activeCard !== card || !card) return;
-
-      gyroActive = false;
-      activeCard = null;
-
-      gsap.to(card, {
-        rotationX: 0,
-        rotationY: 0,
-        scale: 1,
-        duration: RESET_DURATION,
-        ease: "elastic.out(1, 0.5)",
-        overwrite: true,
-      });
-
-      const layerTL = spriteTimelines.get(card!);
-      if (layerTL) layerTL.pause();
-
-      const cardRef = card;
-      gsap.delayedCall(RESET_DURATION + 0.1, () => {
-        if (activeCard !== cardRef) startFloat(cardRef);
-      });
-    }
-
-    container.addEventListener("touchend", handleTouchEnd);
-    container.addEventListener("touchcancel", handleTouchEnd);
-  });
-
-  // --- RETURN API ---
-  return {
-    destroy() {
-      gyroActive = false;
-      window.removeEventListener("deviceorientation", handleOrientation, true);
-      floatTimelines.forEach((tl) => tl.kill());
-      floatTimelines.clear();
-      spriteTimelines.forEach((tl) => tl.kill());
-      spriteTimelines.clear();
-    },
-  };
-}
-
-/* ============================================================
    ORCHESTRATOR — main client component
    ============================================================ */
 export default function Orchestrator() {
@@ -491,75 +194,6 @@ export default function Orchestrator() {
     });
 
     /* ============================================================
-       3D Tilt Interaction — DESKTOP
-       perspective(800px), max ±10°, scale 1.02 on hover
-       ============================================================ */
-    const MAX_TILT = 10;
-    const containers = Array.from(
-      document.querySelectorAll<HTMLElement>(".tilt-card-container")
-    );
-
-    containers.forEach((container) => {
-      const card = container.querySelector<HTMLElement>(".tilt-card");
-      if (!card) return;
-
-      gsap.set(card, {
-        transformStyle: "preserve-3d",
-        transformPerspective: 800,
-      });
-
-      container.addEventListener("mousemove", (e) => {
-        const rect = container.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const cardWidth = rect.width;
-        const cardHeight = rect.height;
-
-        const rotationY = MAX_TILT * ((mouseX - cardWidth / 2) / cardWidth);
-        const rotationX =
-          -MAX_TILT * ((mouseY - cardHeight / 2) / cardHeight);
-
-        gsap.to(card, {
-          rotationX,
-          rotationY,
-          duration: 0.4,
-        });
-        gsap.to(card, { scale: 1.02, duration: 0.4 });
-      });
-
-      container.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          rotationX: 0,
-          rotationY: 0,
-          scale: 1,
-          duration: 0.4,
-        });
-      });
-
-      container.addEventListener("mousedown", () => {
-        gsap.to(card, {
-          scale: 0.97,
-          duration: 0.2,
-          overwrite: true,
-        });
-      });
-
-      container.addEventListener("mouseup", () => {
-        gsap.to(card, {
-          scale: 1,
-          duration: 0.2,
-          overwrite: true,
-        });
-      });
-    });
-
-    /* ============================================================
-       3D Tilt Interaction — MOBILE & TABLET
-       Gyroscope → touch-drag → idle float (priority order)
-       ============================================================ */
-    const mobileTilt = initMobileTilt(containers);
-
-    /* ============================================================
        Image Layer Cycling — DESKTOP hover-triggered on [data-cycling]
        Cycles through 5 layers with autoAlpha, yoyo repeat
        ============================================================ */
@@ -568,7 +202,7 @@ export default function Orchestrator() {
     document
       .querySelectorAll<HTMLElement>("[data-cycling]")
       .forEach((layerStack) => {
-        const layers = layerStack.querySelectorAll(".tilt-card__layer");
+        const layers = layerStack.querySelectorAll(".card__layer");
         if (layers.length < 2) return;
 
         const tl = gsap.timeline({ paused: true });
@@ -584,7 +218,7 @@ export default function Orchestrator() {
         layerTimelines.push(tl);
 
         const hoverTarget =
-          layerStack.closest(".tilt-card-container") || layerStack;
+          layerStack.closest(".card-container") || layerStack;
 
         hoverTarget.addEventListener("mouseenter", () => tl.play());
         hoverTarget.addEventListener("mouseleave", () => tl.pause());
@@ -593,8 +227,8 @@ export default function Orchestrator() {
     /* ============================================================
        Card entrance — fade up on scroll
        ============================================================ */
-    document.querySelectorAll(".tilt-cards-section__card").forEach((slide) => {
-      gsap.from(slide.querySelector(".tilt-card-container"), {
+    document.querySelectorAll(".cards-section__card").forEach((slide) => {
+      gsap.from(slide.querySelector(".card-container"), {
         scrollTrigger: {
           trigger: slide,
           start: "top 75%",
@@ -647,7 +281,6 @@ export default function Orchestrator() {
       );
       menuBtn?.removeEventListener("click", toggleMenu);
       layerTimelines.forEach((tl) => tl.kill());
-      mobileTilt?.destroy();
       ScrollTrigger.getAll().forEach((t) => t.kill());
       destroyLenis();
     };

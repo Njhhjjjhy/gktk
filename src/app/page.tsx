@@ -1,10 +1,9 @@
 import Orchestrator from "@/components/Orchestrator";
 import {
   CyclingLayers,
-  TiltCardA,
-  TiltCardB,
-  TiltCardC,
-} from "@/components/TiltCards";
+  CardB,
+  CardC,
+} from "@/components/Cards";
 
 export default function Home() {
   return (
@@ -41,97 +40,97 @@ export default function Home() {
         <section className="hero" id="hero">
           <div className="hero__content">
             <h1 className="hero__heading">
-              Turnkey living for semiconductor teams in Singapore.
+              Turnkey semiconductor housing.
             </h1>
             <p className="hero__subheading">
-              Purpose-built accommodation for family offices serving the
-              supply chain.
+              100 furnished units in Kumamoto with on-site support.
             </p>
             <p className="hero__body">
-              Furnished, move-in-ready housing with Taiwanese-speaking
-              support staff and professional property management. A complete
-              living solution so tenants can focus on work, not settling in.
+              Taiwanese-speaking staff handle everything from utilities to
+              maintenance. Tenants arrive with a suitcase and start work the
+              next day.
             </p>
           </div>
         </section>
 
-        {/* ========== TILT-CARD PRESENTATION ========== */}
-        <section className="tilt-cards-section">
+        {/* ========== CARD PRESENTATION ========== */}
+        <section className="cards-section">
 
-          {/* ===== tilt-card-1: Persona — Type B ===== */}
-          <div className="tilt-cards-section__card" id="persona">
-            <div className="tilt-card-container">
-              <TiltCardB variant="dark">
-                <span className="section-label">Target tenant</span>
-                <h2 className="tilt-card__title">Who we build for</h2>
+          {/* ===== card-1: Persona — Type B ===== */}
+          <div className="cards-section__card" id="persona">
+            <div className="card-container">
+              <CardB>
+                <span className="section-label">Tenant persona</span>
+                <h2 className="card__title">Expat engineers relocating on short notice.</h2>
                 <p>
-                  Tenants are employees from semiconductor companies on short-
-                  to long-term assignments. They need to settle in quickly and
-                  need &ldquo;move-in-ready&rdquo; accommodations to adapt to a
-                  new environment.
+                  Semiconductor professionals arriving for short- to long-term
+                  assignments who need to be productive on day one. They do not
+                  have time to furnish an apartment, set up utilities, or
+                  navigate a foreign language.
                 </p>
-                <p>
-                  This includes fully furnished units, reliable property
-                  management, and local support to minimize inconveniences
-                  caused by language and cultural differences. An ideal home
-                  allows them to focus on work without being distracted by
-                  day-to-day matters.
-                </p>
-              </TiltCardB>
+                <div className="card__image-placeholder" />
+              </CardB>
             </div>
           </div>
 
-          {/* ===== tilt-card-2: Product & solution — Type C ===== */}
-          <div className="tilt-cards-section__card" id="product">
-            <div className="tilt-card-container">
-              <TiltCardC variant="dark">
+          {/* ===== card-2: Product & solution — Type C ===== */}
+          <div className="cards-section__card" id="product">
+            <div className="card-container">
+              <CardC>
                 <span className="section-label">Our offering</span>
-                <h2 className="tilt-card__title">Product &amp; solution</h2>
-                <div className="tilt-card__product-grid">
-                  <div className="tilt-card__product-item">
-                    <div className="tilt-card__product-image">
+                <h2 className="card__title">Product &amp; solution</h2>
+                <div className="card__product-grid">
+                  <div className="card__product-item">
+                    <div className="card__product-image">
                       <CyclingLayers />
                     </div>
                     <h3>Design concepts</h3>
                   </div>
-                  <div className="tilt-card__product-item">
-                    <div className="tilt-card__product-image">
+                  <div className="card__product-item">
+                    <div className="card__product-image">
                       <CyclingLayers />
                     </div>
                     <h3>Building exterior</h3>
                   </div>
-                  <div className="tilt-card__product-item">
-                    <div className="tilt-card__product-image">
+                  <div className="card__product-item">
+                    <div className="card__product-image">
                       <CyclingLayers />
                     </div>
                     <h3>Interior layouts</h3>
                   </div>
-                  <div className="tilt-card__product-item">
-                    <div className="tilt-card__product-image">
+                  <div className="card__product-item">
+                    <div className="card__product-image">
                       <CyclingLayers />
                     </div>
                     <h3>Common spaces</h3>
                   </div>
-                  <div className="tilt-card__product-item">
-                    <div className="tilt-card__product-image">
+                  <div className="card__product-item">
+                    <div className="card__product-image">
                       <CyclingLayers />
                     </div>
                     <h3>On-the-ground support</h3>
                   </div>
                 </div>
-              </TiltCardC>
+              </CardC>
             </div>
           </div>
 
-          {/* ===== tilt-card-3-1: IRR Assumptions — Type A ===== */}
-          <div className="tilt-cards-section__card" id="irr">
-            <div className="tilt-card-container">
-              <TiltCardA align="top">
+          {/* ===== card-3-1: IRR Assumptions — Type A ===== */}
+          <div className="cards-section__card" id="irr">
+            <div className="card-container">
+              <CardB>
                 <span className="section-label">Financial model</span>
-                <h2 className="tilt-card__title">Investment returns</h2>
+                <h2 className="card__title">Investment returns.</h2>
+                <p>
+                  10.25% post-tax IRR over a 5-year hold. Investors deploy 1
+                  billion yen in equity alongside 1 billion yen in bank debt.
+                  Annual cash flow of 88 million yen plus a year-five exit at
+                  2.5 billion yen produces 940 million yen in distributable
+                  profit.
+                </p>
 
-                <div className="tilt-card__group">
-                  <h3 className="tilt-card__group-label">
+                <div className="card__group">
+                  <h3 className="card__group-label">
                     Investment assumptions
                   </h3>
                   {[
@@ -144,16 +143,16 @@ export default function Home() {
                     ["Loan principal repayment", "¥1,000,000,000"],
                     ["Net exit proceeds (pre-tax)", "¥1,500,000,000"],
                   ].map(([label, value]) => (
-                    <div className="tilt-card__row" key={label}>
-                      <span className="tilt-card__row-label">{label}</span>
-                      <span className="tilt-card__row-line" />
-                      <span className="tilt-card__row-value">{value}</span>
+                    <div className="card__row" key={label}>
+                      <span className="card__row-label">{label}</span>
+                      <span className="card__row-line" />
+                      <span className="card__row-value">{value}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="tilt-card__group">
-                  <h3 className="tilt-card__group-label">
+                <div className="card__group">
+                  <h3 className="card__group-label">
                     Exit and profit calculation
                   </h3>
                   {[
@@ -161,23 +160,26 @@ export default function Home() {
                     ["Exit capital gain", "¥500,000,000"],
                     ["Total distributable profit", "¥940,000,000"],
                   ].map(([label, value]) => (
-                    <div className="tilt-card__row" key={label}>
-                      <span className="tilt-card__row-label">{label}</span>
-                      <span className="tilt-card__row-line" />
-                      <span className="tilt-card__row-value">{value}</span>
+                    <div className="card__row" key={label}>
+                      <span className="card__row-label">{label}</span>
+                      <span className="card__row-line" />
+                      <span className="card__row-value">{value}</span>
                     </div>
                   ))}
                 </div>
-              </TiltCardA>
+              </CardB>
             </div>
           </div>
 
-          {/* ===== tilt-card-3-2: IRR Returns — Type A ===== */}
-          <div className="tilt-cards-section__card">
-            <div className="tilt-card-container">
-              <TiltCardA align="top">
-                <div className="tilt-card__group">
-                  <h3 className="tilt-card__group-label">
+          {/* ===== card-3-2: IRR Returns — Type A ===== */}
+          <div className="cards-section__card">
+            <div className="card-container">
+              <CardB>
+                <span className="section-label">Financial model</span>
+                <h2 className="card__title">Investor returns</h2>
+
+                <div className="card__group">
+                  <h3 className="card__group-label">
                     Waterfall distribution
                   </h3>
                   {[
@@ -187,238 +189,109 @@ export default function Home() {
                     ["GP carry", "20% / ¥118,000,000"],
                     ["LP share of excess", "80% / ¥472,000,000"],
                   ].map(([label, value]) => (
-                    <div className="tilt-card__row" key={label}>
-                      <span className="tilt-card__row-label">{label}</span>
-                      <span className="tilt-card__row-line" />
-                      <span className="tilt-card__row-value">{value}</span>
+                    <div className="card__row" key={label}>
+                      <span className="card__row-label">{label}</span>
+                      <span className="card__row-line" />
+                      <span className="card__row-value">{value}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="tilt-card__group tilt-card__group--highlight">
-                  <h3 className="tilt-card__group-label">
+                <div className="card__group card__group--highlight">
+                  <h3 className="card__group-label">
                     Final investor returns (post 20.42% withholding tax)
                   </h3>
-                  <div className="tilt-card__row">
-                    <span className="tilt-card__row-label">
+                  <div className="card__row">
+                    <span className="card__row-label">
                       Investor take-home
                     </span>
-                    <span className="tilt-card__row-line" />
-                    <span className="tilt-card__row-value">
+                    <span className="card__row-line" />
+                    <span className="card__row-value">
                       ¥1,654,147,600
                     </span>
                   </div>
-                  <div className="tilt-card__row">
-                    <span className="tilt-card__row-label">
+                  <div className="card__row">
+                    <span className="card__row-label">
                       Equity multiple (MOIC)
                     </span>
-                    <span className="tilt-card__row-line" />
-                    <span className="tilt-card__row-value tilt-card__row-value--accent">
+                    <span className="card__row-line" />
+                    <span className="card__row-value card__row-value--accent">
                       1.65x
                     </span>
                   </div>
-                  <div className="tilt-card__row">
-                    <span className="tilt-card__row-label">Estimated IRR</span>
-                    <span className="tilt-card__row-line" />
-                    <span className="tilt-card__row-value tilt-card__row-value--accent">
+                  <div className="card__row">
+                    <span className="card__row-label">Estimated IRR</span>
+                    <span className="card__row-line" />
+                    <span className="card__row-value card__row-value--accent">
                       10.25%
                     </span>
                   </div>
                 </div>
-              </TiltCardA>
+              </CardB>
             </div>
           </div>
 
-          {/* ===== tilt-card-4-1: Risk factors 1–3 — Type C ===== */}
-          <div className="tilt-cards-section__card" id="risk">
-            <div className="tilt-card-container">
-              <TiltCardC variant="dark" align="top">
-                <span className="section-label">Due diligence</span>
-                <h2 className="tilt-card__title">
-                  Risk factors &amp; hedges
-                </h2>
-
-                <div className="tilt-card__risk-item">
-                  <div className="tilt-card__risk-image">
-                    <CyclingLayers />
-                  </div>
-                  <h3 className="tilt-card__risk-label">
-                    Overreliance on the semiconductor industry
-                  </h3>
-                  <div className="tilt-card__risk-body">
-                    <p>
-                      If TSMC slows construction or geopolitical shifts cause
-                      production to leave Japan, the property could face high
-                      vacancy.
-                    </p>
-                    <div>
-                      <h4 className="tilt-card__hedge-label">Hedge</h4>
-                      <p>
-                        Kumamoto has already formed a full industry cluster,
-                        attracting Sony, Tokyo Electron, ASML, and other global
-                        supply chain players. We secure 5-10 year master leases
-                        with major supply chain companies.
-                      </p>
-                    </div>
-                  </div>
+          {/* ===== card-4-1: Risk factors 1–3 ===== */}
+          <div className="cards-section__card" id="risk">
+            <div className="card-container">
+              <CardB>
+                <span className="section-label">Risk factors and hedges</span>
+                <h2 className="card__title">Risk factors.</h2>
+                <p>Every risk has a built-in hedge.</p>
+                <div className="card__group">
+                  <h3 className="card__group-label">TSMC slows or leaves Japan.</h3>
+                  <p>Full cluster: Sony, TEL, ASML. Master leases lock 5 to 10 years of income.</p>
                 </div>
-
-                <div className="tilt-card__risk-item">
-                  <div className="tilt-card__risk-image">
-                    <CyclingLayers />
-                  </div>
-                  <h3 className="tilt-card__risk-label">
-                    Interest rate and currency risk
-                  </h3>
-                  <div className="tilt-card__risk-body">
-                    <p>
-                      If the Bank of Japan raises rates significantly, loan
-                      costs increase. Continued yen depreciation could erode
-                      returns.
-                    </p>
-                    <div>
-                      <h4 className="tilt-card__hedge-label">Hedge</h4>
-                      <p>
-                        We borrow directly from local Japanese banks in JPY and
-                        collect rent in JPY, creating a natural hedge. Lease
-                        agreements include inflation-linked adjustment clauses.
-                      </p>
-                    </div>
-                  </div>
+                <div className="card__group">
+                  <h3 className="card__group-label">Interest rates rise. Yen weakens.</h3>
+                  <p>JPY debt and JPY rent create a natural hedge. Inflation-linked lease clauses.</p>
                 </div>
-
-                <div className="tilt-card__risk-item">
-                  <div className="tilt-card__risk-image">
-                    <CyclingLayers />
-                  </div>
-                  <h3 className="tilt-card__risk-label">
-                    Construction cost and delay risk
-                  </h3>
-                  <div className="tilt-card__risk-body">
-                    <p>
-                      Japan faces severe labor shortages and rising material
-                      costs. Budget overruns or delays could reduce IRR.
-                    </p>
-                    <div>
-                      <h4 className="tilt-card__hedge-label">Hedge</h4>
-                      <p>
-                        Our local development partner directly engages domestic
-                        contractors under fixed-price contracts. Modular and
-                        standardized construction methods reduce on-site
-                        complexity.
-                      </p>
-                    </div>
-                  </div>
+                <div className="card__group">
+                  <h3 className="card__group-label">Construction overruns or delays.</h3>
+                  <p>Fixed-price contracts. Modular construction reduces complexity.</p>
                 </div>
-              </TiltCardC>
+              </CardB>
             </div>
           </div>
 
-          {/* ===== tilt-card-4-2: Risk factors 4–6 — Type C ===== */}
-          <div className="tilt-cards-section__card">
-            <div className="tilt-card-container">
-              <TiltCardC variant="dark" align="top">
-                <div className="tilt-card__risk-item">
-                  <div className="tilt-card__risk-image">
-                    <CyclingLayers />
-                  </div>
-                  <h3 className="tilt-card__risk-label">Tax efficiency</h3>
-                  <div className="tilt-card__risk-body">
-                    <p>
-                      Japan imposes high taxes on foreign real estate investment,
-                      including withholding taxes. Ensuring efficient capital
-                      repatriation to Singapore-based SFOs is critical.
-                    </p>
-                    <div>
-                      <h4 className="tilt-card__hedge-label">Hedge</h4>
-                      <p>
-                        The GKTK structure uses a TK (Tokumei Kumiai / silent
-                        partnership) agreement to distribute profits as fees,
-                        avoiding double taxation and ensuring tax transparency
-                        for investors.
-                      </p>
-                    </div>
-                  </div>
+          {/* ===== card-4-2: Risk factors 4–6 ===== */}
+          <div className="cards-section__card">
+            <div className="card-container">
+              <CardB>
+                <span className="section-label">Risk factors and hedges</span>
+                <h2 className="card__title">Risk factors.</h2>
+                <p>Every risk has a built-in hedge.</p>
+                <div className="card__group">
+                  <h3 className="card__group-label">High foreign investor tax burden.</h3>
+                  <p>TK structure distributes profits as fees, avoiding double taxation.</p>
                 </div>
-
-                <div className="tilt-card__risk-item">
-                  <div className="tilt-card__risk-image">
-                    <CyclingLayers />
-                  </div>
-                  <h3 className="tilt-card__risk-label">
-                    Competition from major Japanese developers
-                  </h3>
-                  <div className="tilt-card__risk-body">
-                    <p>
-                      Companies like Mitsui Fudosan and Mitsubishi Estate are
-                      likely eyeing Kumamoto. Larger, newer properties at
-                      comparable pricing threaten tenant retention.
-                    </p>
-                    <div>
-                      <h4 className="tilt-card__hedge-label">Hedge</h4>
-                      <p>
-                        Our assets are deeply integrated with the semiconductor
-                        supply chain. Through 5-10 year master leases, we
-                        recover the majority of invested capital before
-                        competitors complete construction.
-                      </p>
-                    </div>
-                  </div>
+                <div className="card__group">
+                  <h3 className="card__group-label">Major developers enter Kumamoto.</h3>
+                  <p>Supply-chain integration plus lease lock-in recovers capital before competitors finish.</p>
                 </div>
-
-                <div className="tilt-card__risk-item">
-                  <div className="tilt-card__risk-image">
-                    <CyclingLayers />
-                  </div>
-                  <h3 className="tilt-card__risk-label">
-                    Investor control limitations under GKTK
-                  </h3>
-                  <div className="tilt-card__risk-body">
-                    <p>
-                      TK investors cannot interfere with operations without
-                      losing tax benefits. Poor decisions by MoreHarvest or the
-                      Japanese partner need protective mechanisms.
-                    </p>
-                    <div>
-                      <h4 className="tilt-card__hedge-label">Hedge</h4>
-                      <p>
-                        The agreement includes negative covenants with trigger
-                        mechanisms for material events. CapitaLand serves as
-                        both co-investor and operator, acting as a rigorous
-                        oversight layer.
-                      </p>
-                    </div>
-                  </div>
+                <div className="card__group">
+                  <h3 className="card__group-label">Investors have no operational control.</h3>
+                  <p>Negative covenants trigger approval for material events. CapitaLand oversight.</p>
                 </div>
-              </TiltCardC>
+              </CardB>
             </div>
           </div>
 
-          {/* ===== tilt-card-5: Exit strategy — Type B ===== */}
-          <div className="tilt-cards-section__card" id="exit">
-            <div className="tilt-card-container">
-              <TiltCardB variant="light">
-                <span className="section-label">Liquidity path</span>
-                <h2 className="tilt-card__title">Exit strategy</h2>
+          {/* ===== card-5: Exit strategy — Type B ===== */}
+          <div className="cards-section__card" id="exit">
+            <div className="card-container">
+              <CardB>
+                <span className="section-label">Exit strategy</span>
+                <h2 className="card__title">Exit strategy.</h2>
                 <p>
-                  The investment is structured around a 5-year hold with a clear
-                  exit path. Upon reaching the target holding period, the
-                  property is sold on the open market at an anticipated sale
-                  price of ¥2,500,000,000 — yielding net exit proceeds of
-                  ¥1,500,000,000 after loan repayment.
+                  Three paths to liquidity after year five. The default exit is
+                  a sale to CapitaLand REITs or institutional funds that favour
+                  stabilized, income-producing assets. If semiconductor demand
+                  plateaus, the building can be repositioned as a business hotel
+                  or premium rental apartments. A partial exit through
+                  refinancing or stake sales is also available.
                 </p>
-                <p>
-                  Cumulative rental cash flows over the holding period provide
-                  ¥440,000,000 in distributable income, while the capital gain
-                  at exit adds ¥500,000,000 — for a total distributable profit
-                  of ¥940,000,000.
-                </p>
-                <p>
-                  Secondary exit options include refinancing against appreciated
-                  asset value, partial stake sales to institutional investors, or
-                  conversion to a REIT-eligible structure.
-                </p>
-              </TiltCardB>
+              </CardB>
             </div>
           </div>
         </section>
